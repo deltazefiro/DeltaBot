@@ -51,6 +51,7 @@ def process_list_task(user_id):
     except FileNotFoundError as e:
         data = {}
 
+    user_id = str(user_id)
     if not user_id in data:
         return "[UserID %s] 尚未创建任务" %user_id
     
@@ -76,6 +77,7 @@ def process_finish_task(task_idx, user_id):
     except FileNotFoundError as e:
         data = {}
 
+    user_id = str(user_id)
     if not user_id in data:
         return "[UserID %s] 尚未创建任务" %user_id
 
@@ -91,7 +93,28 @@ def process_finish_task(task_idx, user_id):
         json.dump(data, f, indent=4)
     return data[user_id]['unfinished'], data[user_id]['finished']
 
+
+def process_add_task(task: str, user_id: int):
+    try:
+        with open(TASKS_DATA_PATH, mode='r', encoding='utf-8') as f:
+            data = json.load(f)
+    except FileNotFoundError as e:
+        data = {}
+
+    user_id = str(user_id)
+    if not user_id in data:
+        data[user_id] = {'tasks':[], 'unfinished':0, 'finished':0}
+
+    tasks = [t.strip() for t in task.split()]
+    data[user_id]['tasks'].extend([{'content':c, 'time':None, 'is_finished':False} for c in tasks])
+    data[user_id]['unfinished'] += len(tasks)
+
+    with open(TASKS_DATA_PATH, mode='w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4)
+
+
 process_set_task("hahahah\nasdfadsf\nasdf", '10000')
 print(process_list_task('10000'))
-process_finish_task(4, '10000')
+# process_finish_task(4, '10000')
+process_add_task("haha\nasdfsdf", '10000')
 print(process_list_task('10000'))
