@@ -2,48 +2,18 @@
     "2781945273": {
         "tasks": [
             {
-                "content": "\u6570\u5b66\u53774",
+                "content": "aaa",
                 "time": null,
                 "is_finished": true
             },
             {
-                "content": "\u7269\u7406\u53773",
-                "time": null,
-                "is_finished": true
-            },
-            {
-                "content": "\u82f1\u8bed\u7070\u5377",
-                "time": null,
-                "is_finished": false
-            },
-            {
-                "content": "\u6570\u5217\u7b14\u8bb0\u6574\u7406",
-                "time": null,
-                "is_finished": false
-            },
-            {
-                "content": "\u5b8c\u6210\u8bfe\u5916\u8865\u4e60\u73ed\u4f5c\u4e1a",
-                "time": null,
-                "is_finished": true
-            },
-            {
-                "content": "\u8bed\u6587\u5f52\u53bb\u6765\u516e\u590d\u4e60",
-                "time": null,
-                "is_finished": true
-            },
-            {
-                "content": "\u82f1\u8bed\u62a5\u7eb8A\u7248",
-                "time": null,
-                "is_finished": true
-            },
-            {
-                "content": "\u82f1\u8bed\u62a5\u7eb8B\u7248",
+                "content": "aa",
                 "time": null,
                 "is_finished": true
             }
         ],
-        "unfinished": 2,
-        "finished": 6
+        "unfinished": 0,
+        "finished": 2
     },
     "10000": {
         "tasks": [
