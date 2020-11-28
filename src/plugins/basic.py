@@ -10,7 +10,7 @@ async def __get_formatted_time():
 
 
 @nonebot.on_websocket_connect
-async def on_connected(event):
+async def on_setup(event):
     await asyncio.sleep(1)
     await nonebot.helpers.send_to_superusers(nonebot.get_bot(), "DeltaBot has been started. %s"
                                              %(await __get_formatted_time()))
