@@ -2,7 +2,7 @@ from nonebot import on_command, CommandSession
 from .task_process import *
 
 
-@on_command('settask', aliases=('setplan', 'settasks', 'task', 'taskset'))
+@on_command('settask', aliases=('setplan', 'settasks', 'task', 'taskset', 'set_task'))
 async def set_task(session: CommandSession):
     user_id = session.event.user_id
     task = session.get('task', prompt="[UserID %s] 请输入目标计划，一行一个目标，不需加序号" %user_id)
@@ -20,7 +20,7 @@ async def _(session: CommandSession):
         session.pause('Input invalid. Please input again.')
 
 
-@on_command('listtask', aliases=('showtask', 'listtasks', 'tasklist'))
+@on_command('listtask', aliases=('showtask', 'listtasks', 'tasklist', 'list_task'))
 async def list_task(session: CommandSession):
     user_id = session.event.user_id
     await session.send(await process_list_task(user_id))

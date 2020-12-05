@@ -1,8 +1,5 @@
 from os import path
 import nonebot
-import time
-import asyncio
-
 import config
 
 if __name__ == '__main__':
