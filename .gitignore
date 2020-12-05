@@ -145,3 +145,5 @@ cqhttp/device.json
 /src/plugins/cq_pixiv/data/account.json
 /src/plugins/cq_pixiv/data/administrators.json
 /src/plugins/cq_pixiv/
+data/
+/src/plugins/time_planning/data/
