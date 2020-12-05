@@ -1,4 +1,7 @@
 from nonebot import on_command, CommandSession
+import sys
+sys.path.append('../')
+from logger import logger
 import nonebot
 import time
 import random
@@ -14,6 +17,7 @@ async def on_setup(event):
     await asyncio.sleep(1)
     await nonebot.helpers.send_to_superusers(nonebot.get_bot(), "DeltaBot has been started. %s"
                                              %(await __get_formatted_time()))
+    logger.log("DeltaBot has been started.")
 
 
 
@@ -33,9 +37,8 @@ async def ping(session: CommandSession):
 @on_command('log')
 async def log(session: CommandSession):
     msg = session.get('msg', prompt="Please enter a log message.")
+    logger.log(msg)
     await session.send("Send msg to log successfully.")
-    print(msg)
-    # print("Log: %s" %msg)
 
 @log.args_parser
 async def _(session: CommandSession):

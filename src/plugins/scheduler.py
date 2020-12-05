@@ -5,7 +5,6 @@ sys.path.append('../')
 
 from aiocqhttp.exceptions import Error as CQHttpError
 import nonebot
-import config
 import time
 
 @nonebot.scheduler.scheduled_job('interval', minutes=30)
