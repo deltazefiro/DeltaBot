@@ -24,7 +24,7 @@ import re
 #
 # }
 
-TASKS_DATA_PATH = "../../data/tasks.json"
+TASKS_DATA_PATH = "./tasks.json"
 TASKS_DATA_PATH = os.path.join(os.path.dirname(__file__), TASKS_DATA_PATH)
 
 
