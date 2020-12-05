@@ -1,6 +1,6 @@
 from nonebot import on_command, CommandSession
 
-from .data_source import from_reimu_get_info
+from .data_source import *
 
 __plugin_name__ = 'reimu'
 __plugin_usage__ = r"""
@@ -13,20 +13,41 @@ Usage:
 """.strip()
 
 
-@on_command('reimu', aliases=('reimu', '上车', '上車'))
+@on_command('reimu', aliases=('reimu', '上车', '上車', '开车'))
 async def reimu(session: CommandSession):
-    key_word = session.get('key_word', prompt='你想到哪儿下车？')
-    reimu_ret = await from_reimu_get_info(key_word)
-    if reimu_ret:
-        await session.send(reimu_ret)
+    await session.send("[Hidden function]开车\n"
+                       "本模块修改自Angel-Hair/XUN_Bot\n\n"
+                       "[Note]大部分资源解压密码为⑨\n")
+    key_word = await session.aget('key_word', prompt='你想到哪儿下车？')
+    search_result = await get_search_result(key_word)
+
+    if search_result:
+        msg = "Found %d results: \n" %len(search_result)
+        for i, r in enumerate(search_result):
+            msg += "    【%s】%s\n\n" %(i+1, r[0])
+        await session.send(msg)
+
+        idx = int(await session.aget('idx', prompt='Index?(exit if input invaild)'))
+
+        if 0 < idx < len(search_result):
+            downlinks = await get_download_links(search_result[idx-1][1])
+            if downlinks:
+                await session.send("Downlinks:\n\n%s" %downlinks)
+            else:
+                await session.send("No links are found in the post.Please try another one.")
+        else:
+            await session.send("Invaild input. Exit...")
+
     else:
-        print("Not found reimuInfo")
-        await session.send("[ERROR]Not found reimuInfo")
+        print("Not found reimu")
+        await session.send("Search not found.")
 
 
 @reimu.args_parser
 async def _(session: CommandSession):
     stripped_arg = session.current_arg_text.strip()
+
+    print(session.current_key, stripped_arg)
 
     if session.is_first_run:
         if stripped_arg:
@@ -34,7 +55,11 @@ async def _(session: CommandSession):
         return
 
     if not stripped_arg:
-        session.pause('没时间等了！快说你要去哪里？')
+        if session.current_key == 'key_word':
+            await session.pause('没时间等了！快说你要去哪里？')
+        else:
+            await session.pause('看不懂英语吗?输入编号![Doge]')
 
     session.state[session.current_key] = stripped_arg
+
 
