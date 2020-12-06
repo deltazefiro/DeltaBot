@@ -7,18 +7,23 @@
                 "is_finished": false
             },
             {
-                "content": "c",
+                "content": "b",
                 "time": null,
-                "is_finished": false
+                "is_finished": true
             },
             {
-                "content": "s",
+                "content": "c",
+                "time": null,
+                "is_finished": true
+            },
+            {
+                "content": "d",
                 "time": null,
                 "is_finished": false
             }
         ],
-        "unfinished": 3,
-        "finished": 0
+        "unfinished": 2,
+        "finished": 2
     },
     "10000": {
         "tasks": [
