@@ -7,3 +7,6 @@ HOST = '0.0.0.0'
 PORT = 8080
 
 DEBUG = True
+
+ITPK_API_KEY = 'd3507d64d2c852503f325bcb78f6a2c1'
+ITPK_APT_SECRET = 'm9kumidz55ds'
