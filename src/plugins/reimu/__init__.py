@@ -19,7 +19,7 @@ async def reimu(session: CommandSession):
     await session.send("[Hidden function]ReimuSearch\n"
                        "本模块修改自Angel-Hair/XUN_Bot\n\n"
                        "[Note]\n - 大部分资源解压密码为⑨\n - 标准码使用方式请自行Google")
-    key_word = await session.aget('key_word', prompt='你想到哪儿下车？', arg_filters=[handle_cancellation])
+    key_word = await session.aget('key_word', prompt='你想到哪儿下车？')#, arg_filters=[handle_cancellation])
     search_result = await get_search_result(key_word)
 
     if search_result:
@@ -28,7 +28,7 @@ async def reimu(session: CommandSession):
             msg += "    【%s】%s\n\n" %(i+1, r[0])
         await session.send(msg)
 
-        idx = int(await session.aget('idx', prompt='Index?(exit if input invaild)', arg_filters=[handle_cancellation]))
+        idx = int(await session.aget('idx', prompt='Index?(exit if input invaild)'))#, arg_filters=[handle_cancellation]))
 
         if 0 < idx < len(search_result):
             downlinks = await get_download_links(search_result[idx-1][1])

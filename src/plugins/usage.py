@@ -27,10 +27,15 @@ async def usage(session: CommandSession):
     else:
         await session.send("功能不存在")
 
+@on_natural_language(keywords=['功能', '帮助', '使用', '用法', 'help', 'usage'])
+async def _(session: NLPSession):
+    return IntentCommand(70.0, 'usage')
+
+
 @on_command('unknown_command')
 async def unknown_command(session: CommandSession):
     await session.send("未知命令，请输入/help查看帮助")
 
-@on_natural_language
+@on_natural_language(keywords='/')
 async def _(session: NLPSession):
-    return IntentCommand(60.0, 'unknown_command', args={'msg': session.msg_text})
+    return IntentCommand(70.0, 'unknown_command', args={'msg': session.msg_text})
