@@ -1,8 +1,9 @@
 from nonebot import on_command, CommandSession
+from nonebot.command.argfilter.controllers import handle_cancellation
 
 from .data_source import *
 
-__plugin_name__ = 'reimu'
+# __plugin_name__ = 'reimu'
 __plugin_usage__ = r"""
 [ThirdParty plugin]
 [Modified from https://github.com/Angel-Hair/XUN_Bot/tree/master/xunbot/plugins/reimu]
@@ -15,10 +16,10 @@ Usage:
 
 @on_command('reimu', aliases=('reimu', '上车', '上車', '开车'))
 async def reimu(session: CommandSession):
-    await session.send("[Hidden function]开车\n"
+    await session.send("[Hidden function]ReimuSearch\n"
                        "本模块修改自Angel-Hair/XUN_Bot\n\n"
-                       "[Note]大部分资源解压密码为⑨\n")
-    key_word = await session.aget('key_word', prompt='你想到哪儿下车？')
+                       "[Note]\n - 大部分资源解压密码为⑨\n - 标准码使用方式请自行Google")
+    key_word = await session.aget('key_word', prompt='你想到哪儿下车？', arg_filters=[handle_cancellation])
     search_result = await get_search_result(key_word)
 
     if search_result:
@@ -27,7 +28,7 @@ async def reimu(session: CommandSession):
             msg += "    【%s】%s\n\n" %(i+1, r[0])
         await session.send(msg)
 
-        idx = int(await session.aget('idx', prompt='Index?(exit if input invaild)'))
+        idx = int(await session.aget('idx', prompt='Index?(exit if input invaild)', arg_filters=[handle_cancellation]))
 
         if 0 < idx < len(search_result):
             downlinks = await get_download_links(search_result[idx-1][1])

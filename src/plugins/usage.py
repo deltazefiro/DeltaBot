@@ -15,6 +15,7 @@ async def usage(session: CommandSession):
 
     arg = session.current_arg_text.strip().lower()
     if not arg:
+        await session.send(__plugin_usage__)
         await session.send('我现在支持的功能有：\n\n' + '\n'.join(p.name for p in plugins))
         return
 
