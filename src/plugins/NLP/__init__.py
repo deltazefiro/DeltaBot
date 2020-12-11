@@ -30,13 +30,9 @@ async def NLP(session: CommandSession):
         # 如果调用机器人成功，得到了回复，则转义之后发送给用户
         await session.send(escape(reply))
     else:
-        # 如果调用失败，或者它返回的内容我们目前处理不了，发送无法获取图灵回复时的「表达」
-        # 这里的 render_expression() 函数会将一个「表达」渲染成一个字符串消息
         await session.send(render_expression(EXPR_DONT_UNDERSTAND))
 
 
 @on_natural_language
 async def _(session: NLPSession):
-    # 以置信度 60.0 返回 tuling 命令
-    # 确保任何消息都在且仅在其它自然语言处理器无法理解的时候使用 tuling 命令
     return IntentCommand(60.0, 'NLP', args={'message': session.msg_text})

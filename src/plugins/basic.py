@@ -1,4 +1,4 @@
-from nonebot import on_command, CommandSession
+from nonebot import on_command, CommandSession, command
 import sys
 sys.path.append('../')
 # from logger import logger
@@ -21,10 +21,10 @@ async def on_setup(event):
 
 
 
-@on_command('~')
-async def interesting(session: CommandSession):
-    msg = ['T^T', '~~~', 'Σ( ° △ °|||)︴', 'φ(≧ω≦*)♪', 'Ｏ(≧口≦)Ｏ']
-    await session.send(random.choice(msg))
+@on_command('kill', privileged=True)
+async def kill(session: CommandSession):
+    await session.send("*DeltaBot*掉出了这个世界")
+    command.kill_current_session(session.event)
 
 
 
