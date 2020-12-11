@@ -4,7 +4,7 @@ from nonebot import on_natural_language, NLPSession, IntentCommand
 __plugin_name__ = 'usage'
 __plugin_usage__ = r"""
 显示使用帮助
- - help [plugin_name]
+ - /help [plugin_name]
     查询特定插件的使用帮助
     当无参数时，返回功能列表
 """.strip()
@@ -17,7 +17,7 @@ async def usage(session: CommandSession):
     arg = session.current_arg_text.strip().lower()
     if not arg:
         await session.send(__plugin_usage__)
-        await session.send('我现在支持的功能有：\n\n' + '\n'.join(p.name for p in plugins))
+        await session.send('我现在支持的功能有:\n' + '\n'.join('   - '+p.name for p in plugins))
         return
 
     check = set(filter(lambda p: p.name.lower() == arg, plugins))

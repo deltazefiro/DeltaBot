@@ -10,9 +10,9 @@ sys.path.append('../')
 
 __plugin_name__ = 'call_admin'
 __plugin_usage__ = r"""
-Send messege to admin.
+Send message to admin.
 Usage:
- - calladmin [msg]
+ - /calladmin [msg]
 """.strip()
 
 
@@ -27,9 +27,9 @@ async def call_admin(session: CommandSession):
     sender_info = "\n\n——@{}({}) | {}".format(session.event['sender']['nickname'], id,
                                             time.strftime("%Y-%m-%d", time.localtime(session.event['time'])))
 
-    await helpers.send_to_superusers(nonebot.get_bot(), message=("Messege received:\n\n   " + info + sender_info))
-    await session.send("Send messege successfully :)")
-    # logger.info("Send messege to admin successfully")
+    await helpers.send_to_superusers(nonebot.get_bot(), message=("Message received:\n\n   " + info + sender_info))
+    await session.send("Send message successfully :)")
+    # logger.info("Send message to admin successfully")
 
 
 
@@ -43,6 +43,6 @@ async def _(session: CommandSession):
         return
 
     if not arg:
-        session.pause('Please input the messege.')
+        session.pause('Please input the message.')
 
     session.state[session.current_key] = arg

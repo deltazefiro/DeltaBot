@@ -7,7 +7,7 @@ __plugin_usage__ = r"""
 Reload all plugins.
 *Required admin permission*
 Usage:
- - reload
+ - /reload
 """.strip()
 
 PLUGINS_PATH = "."
