@@ -9,7 +9,7 @@ __plugin_usage__ = r"""
 [Modified from https://github.com/Angel-Hair/XUN_Bot/tree/master/xunbot/plugins/reimu]
 
 Usage:
- - reimu [目的地]
+ - /reimu [目的地]
     ps: 请尽量提供具体的目的地名称
 """.strip()
 
@@ -28,7 +28,7 @@ async def reimu(session: CommandSession):
             msg += "    【%s】%s\n\n" %(i+1, r[0])
         await session.send(msg)
 
-        idx = int(await session.aget('idx', prompt='Index?(exit if input invaild)'))#, arg_filters=[handle_cancellation]))
+        idx = int(await session.aget('idx', prompt='Index?(exit if input invalid)'))#, arg_filters=[handle_cancellation]))
 
         if 0 < idx < len(search_result):
             downlinks = await get_download_links(search_result[idx-1][1])
@@ -37,7 +37,7 @@ async def reimu(session: CommandSession):
             else:
                 await session.send("No links are found in the post.Please try another one.")
         else:
-            await session.send("Invaild input. Exit...")
+            await session.send("Invalid input. Exit...")
 
     else:
         print("Not found reimu")
