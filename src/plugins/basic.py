@@ -1,10 +1,7 @@
 from nonebot import on_command, CommandSession, command
 import sys
-sys.path.append('../')
-# from logger import logger
 import nonebot
 import time
-import random
 import asyncio
 
 async def __get_formatted_time():
