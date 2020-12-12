@@ -8,7 +8,7 @@ __plugin_usage__ = r"""
 [ThirdParty plugin]
 [Modified from https://github.com/Angel-Hair/XUN_Bot/tree/master/xunbot/plugins/reimu]
 
-Usage:
+Command(s):
  - /reimu [目的地]
     ps: 请尽量提供具体的目的地名称
 """.strip()
