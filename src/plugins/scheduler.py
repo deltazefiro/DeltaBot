@@ -1,8 +1,5 @@
 from datetime import datetime
 
-import sys
-sys.path.append('../')
-
 from aiocqhttp.exceptions import Error as CQHttpError
 import nonebot
 import time

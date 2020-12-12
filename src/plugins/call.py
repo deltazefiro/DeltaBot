@@ -4,9 +4,7 @@ import time
 
 import nonebot
 from nonebot import on_command, CommandSession, helpers
-import sys
-sys.path.append('../')
-# from logger import logger
+from logger import logger
 
 __plugin_name__ = 'call_admin'
 __plugin_usage__ = r"""
@@ -19,17 +17,17 @@ Usage:
 @on_command('calladmin', aliases=('call_admin', '致电管理员'))
 async def call_admin(session: CommandSession):
 
-    id = session.event['user_id']
+    user_id = session.event['user_id']
 
     info = session.get('info', prompt='Please input the msg.')
-    # logger.info("Get Information: {} \nfrom ID: {}".format(info, id))
+    logger.info("Get Information: {} from ID: {}".format(info, user_id))
 
-    sender_info = "\n\n——@{}({}) | {}".format(session.event['sender']['nickname'], id,
+    sender_info = "\n\n——@{}({}) | {}".format(session.event['sender']['nickname'], user_id,
                                             time.strftime("%Y-%m-%d", time.localtime(session.event['time'])))
 
     await helpers.send_to_superusers(nonebot.get_bot(), message=("Message received:\n\n   " + info + sender_info))
     await session.send("Send message successfully :)")
-    # logger.info("Send message to admin successfully")
+    logger.info("Send message to admin successfully")
 
 
 
