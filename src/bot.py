@@ -1,6 +1,9 @@
 from os import path
+
 import nonebot
 import config
+import sys
+sys.path.append('.')
 
 if __name__ == '__main__':
     nonebot.init(config)
