@@ -6,7 +6,7 @@ __plugin_name__ = 'reload'
 __plugin_usage__ = r"""
 Reload all plugins.
 *Required admin permission*
-Usage:
+Command(s):
  - /reload
 """.strip()
 
