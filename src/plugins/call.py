@@ -9,7 +9,7 @@ from logger import logger
 __plugin_name__ = 'call_admin'
 __plugin_usage__ = r"""
 Send message to admin.
-Usage:
+Command(s):
  - /calladmin [msg]
 """.strip()
 

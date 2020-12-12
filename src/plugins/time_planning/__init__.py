@@ -1,10 +1,11 @@
 from nonebot import on_command, CommandSession
 from .task_process import *
+from logger import logger
 
 __plugin_name__ = 'time_planning'
 __plugin_usage__ = r"""
 目标计划管理插件
-Usage:
+Command(s):
  - /settask [tasks]
     (覆盖)设定目标计划
  - /listtask
