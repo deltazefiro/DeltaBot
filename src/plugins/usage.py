@@ -1,5 +1,6 @@
 from nonebot import on_command, CommandSession, get_loaded_plugins
 from nonebot import on_natural_language, NLPSession, IntentCommand
+import nonebot
 
 __plugin_name__ = 'usage'
 __plugin_usage__ = r"""
@@ -12,13 +13,16 @@ __plugin_usage__ = r"""
 
 @on_command('usage', aliases=('help', '使用帮助', '帮助', '使用方法'))
 async def usage(session: CommandSession):
+    bot = nonebot.get_bot()
     plugins = list(filter(lambda p: p.name, get_loaded_plugins()))
 
     arg = session.current_arg_text.strip().lower()
     if not arg:
         await session.send(__plugin_usage__)
-        await session.send('我现在支持的功能有:\n' + '\n'.join('   - '+p.name for p in plugins))
-        return
+        await session.send('DeltaBot v%s'%bot.config.VERSION
+                           + '\n插件列表:\n'
+                           + '\n'.join('   - '+p.name for p in plugins))
+        return None
 
     check = set(filter(lambda p: p.name.lower() == arg, plugins))
     if check:
