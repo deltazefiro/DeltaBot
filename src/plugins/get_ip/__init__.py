@@ -1,4 +1,4 @@
-from nonebot import on_command, CommandSession
+from nonebot import on_command, CommandSession, message
 from .data_source import *
 
 __plugin_name__ = 'get_ip'
@@ -40,6 +40,7 @@ async def _(session: CommandSession):
         session.state['jump_url'] = arg
     else:
         session.state['jump_url'] = None
+
 
 
 @on_command('getip', aliases=('get_ip', 'get_ip_from_trap'))
