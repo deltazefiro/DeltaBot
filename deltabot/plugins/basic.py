@@ -1,9 +1,9 @@
 from nonebot import on_command, CommandSession, command
-import sys
 import nonebot
 import time
 import asyncio
-from logger import logger
+from ..logger import logger
+from .._version import __version__
 
 async def __get_formatted_time():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -15,8 +15,8 @@ async def on_setup(event):
     await asyncio.sleep(1)
     bot = nonebot.get_bot()
     await nonebot.helpers.send_to_superusers(nonebot.get_bot(), "DeltaBot has been started. Version: %s\n%s"
-                                             %(bot.config.VERSION, await __get_formatted_time()))
-    logger.info("DeltaBot has been started. Version: %s" %bot.config.VERSION)
+                                             %(__version__, await __get_formatted_time()))
+    logger.info("DeltaBot has been started. Version: %s" %__version__)
 
 
 
@@ -30,7 +30,7 @@ async def kill(session: CommandSession):
 @on_command('version', aliases=('ver'))
 async def kill(session: CommandSession):
     bot = nonebot.get_bot()
-    await session.send("DeltaBot Version: %s" %bot.config.VERSION)
+    await session.send("DeltaBot Version: %s" %__version__)
 
 
 
