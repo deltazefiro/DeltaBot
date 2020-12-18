@@ -5,7 +5,7 @@ import random
 import aiohttp
 from typing import Optional
 
-from logger import logger
+from ...logger import logger
 
 
 async def generate_trap_url(jump_url: str = 'www.baidu.com') -> (Optional[str], Optional[str]):

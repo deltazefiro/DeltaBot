@@ -1,6 +1,6 @@
 from nonebot import on_command, CommandSession
 from .task_process import *
-from logger import logger
+from ...logger import logger
 
 __plugin_name__ = 'time_planning'
 __plugin_usage__ = r"""

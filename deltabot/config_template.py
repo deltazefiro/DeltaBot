@@ -1,5 +1,4 @@
 from nonebot.default_config import *
-from _version import __version__
 
 # Administer(s)
 SUPERUSERS = {}
@@ -18,6 +17,3 @@ DEBUG = False
 # Get it from http://www.itpk.cn/
 ITPK_API_KEY = ''
 ITPK_APT_SECRET = ''
-
-# Version
-VERSION = __version__
