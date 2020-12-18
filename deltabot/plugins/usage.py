@@ -1,5 +1,6 @@
 from nonebot import on_command, CommandSession, get_loaded_plugins
 from nonebot import on_natural_language, NLPSession, IntentCommand
+from .._version import __version__
 import nonebot
 
 __plugin_name__ = 'usage'
@@ -19,7 +20,7 @@ async def usage(session: CommandSession):
     arg = session.current_arg_text.strip().lower()
     if not arg:
         await session.send(__plugin_usage__)
-        await session.send('DeltaBot v%s'%bot.config.VERSION
+        await session.send('DeltaBot v%s'%__version__
                            + '\n插件列表:\n'
                            + '\n'.join('   - '+p.name for p in plugins))
         return None

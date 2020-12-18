@@ -138,10 +138,7 @@ tester.py
 temp.py
 
 # Security
-cqhttp/config.json
-cqhttp/logs
-cqhttp/data
-cqhttp/device.json
+/cqhttp/
+!/cqhttp/go-cqhttp
 data/
-/src/plugins/time_planning/data/
-/src/config.py
+/deltabot/config.py

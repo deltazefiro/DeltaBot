@@ -1,0 +1,2 @@
+import deltabot
+deltabot.run()
