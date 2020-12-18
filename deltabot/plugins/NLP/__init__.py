@@ -4,7 +4,7 @@ from nonebot import on_command, CommandSession
 from nonebot import on_natural_language, NLPSession, IntentCommand
 from nonebot.helpers import render_expression
 
-__plugin_name__ = 'NLP'
+__plugin_name__ = '[I]NLP'
 __plugin_usage__ = r"""
 [Internal plugin]
 Internal plugin for natural language conversation.
