@@ -14,21 +14,23 @@ __plugin_usage__ = r"""
 
 @on_command('usage', aliases=('help', '使用帮助', '帮助', '使用方法'))
 async def usage(session: CommandSession):
-    bot = nonebot.get_bot()
     plugins = list(filter(lambda p: p.name, get_loaded_plugins()))
 
     arg = session.current_arg_text.strip().lower()
     if not arg:
+        plugins_list = [p.name.replace(']', '] ')
+                        for p in plugins
+                        if ('[I]' not in p.name) and ('[H]' not in p.name)]
         await session.send(__plugin_usage__)
         await session.send('DeltaBot v%s'%__version__
                            + '\n插件列表:\n'
-                           + '\n'.join('   - '+p.name for p in plugins))
-        return None
+                           + '\n    - '.join(plugins_list))
+        return
 
-    check = set(filter(lambda p: p.name.lower() == arg, plugins))
-    if check:
-        for p in check:
-            await session.send(p.usage)
+    plugin_usage = [p.usage for p in plugins if p.name in (arg, f'[I]{arg}', f'[A]{arg}')]
+    if plugin_usage:
+        for p in plugin_usage:
+            await session.send(p)
     else:
         await session.send("功能不存在")
 

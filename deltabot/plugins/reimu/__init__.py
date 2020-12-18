@@ -3,7 +3,7 @@ from nonebot.command.argfilter.controllers import handle_cancellation
 
 from .data_source import *
 
-# __plugin_name__ = 'reimu'
+__plugin_name__ = '[H]reimu'
 __plugin_usage__ = r"""
 [ThirdParty plugin]
 [Modified from https://github.com/Angel-Hair/XUN_Bot/tree/master/xunbot/plugins/reimu]
