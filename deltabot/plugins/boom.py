@@ -1,7 +1,7 @@
 from nonebot import on_command, CommandSession, permission
 import math
 
-__plugin_name__ = 'boom'
+__plugin_name__ = '[A]boom'
 __plugin_usage__ = r"""
 EXPLOSION is ART!!!
 *Required admin permission*

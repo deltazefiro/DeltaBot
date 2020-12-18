@@ -2,7 +2,7 @@ import nonebot
 import time
 from nonebot import on_request, RequestSession, helpers
 
-__plugin_name__ = 'request_process'
+__plugin_name__ = '[I]request_process'
 __plugin_usage__ = r"""
 [Internal plugin]
 Approving friend-adding request automatically.

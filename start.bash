@@ -1,3 +1,3 @@
 source ./venv/bin/activate
 cd cqhttp
-python3 ../src/bot.py & ./go-cqhttp && fg
+python3 ../start.py & ./go-cqhttp && fg
