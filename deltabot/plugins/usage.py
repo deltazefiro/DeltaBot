@@ -18,13 +18,13 @@ async def usage(session: CommandSession):
 
     arg = session.current_arg_text.strip().lower()
     if not arg:
-        plugins_list = [p.name.replace(']', '] ')
+        plugins_list = ['    - ' + p.name.replace(']', '] ')
                         for p in plugins
                         if ('[I]' not in p.name) and ('[H]' not in p.name)]
         await session.send(__plugin_usage__)
         await session.send('DeltaBot v%s'%__version__
                            + '\n插件列表:\n'
-                           + '\n    - '.join(plugins_list))
+                           + '\n'.join(plugins_list))
         return
 
     plugin_usage = [p.usage for p in plugins if p.name in (arg, f'[I]{arg}', f'[A]{arg}')]
