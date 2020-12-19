@@ -4,6 +4,7 @@ from .data_source import *
 __plugin_name__ = 'get_ip'
 __plugin_usage__ = r"""
 Get other's ip with a trap website.
+Trap provided by https://met.red/
 Usage:
     Use '/gettrap' to generate a trap url (a website can getting IP addr) with a key,
     Then send the trap url to the one you want to get IP,
@@ -22,9 +23,9 @@ Command(s):
 @on_command('gettrap', aliases=('get_trap', 'generate_trap', 'generate_trap_url'))
 async def get_trap(session: CommandSession):
     if session.state['jump_url']:
-        ret = await generate_trap_url(session.state['jump_url'])
+        ret = await generate_trap_url(session, session.state['jump_url'])
     else:
-        ret = await generate_trap_url()
+        ret = await generate_trap_url(session)
 
     if ret:
         await session.send("TrapURL & Key:")
@@ -46,7 +47,7 @@ async def _(session: CommandSession):
 @on_command('getip', aliases=('get_ip', 'get_ip_from_trap'))
 async def get_trap(session: CommandSession):
     key = session.get('key', prompt="Please input the trap key.")
-    ret = await get_ip_from_trap(key)
+    ret = await get_ip_from_trap(session, key)
 
     if ret:
         await session.send("IP: %s\nApprox.addr: %s" %(ret[0], ret[1]))
