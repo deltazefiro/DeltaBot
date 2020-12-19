@@ -1,8 +1,12 @@
 # DeltaBot
 
-DeltaBot 是基于 [NoneBot(1)](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的QQ机器人
+DeltaBot 是一个基于 [NoneBot(1)](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的的QQ机器人
+
+有些写着玩、没啥用的无聊功能
 
 ***本项目目前处于开发阶段***
+
+[ [@sandboxdream](https://github.com/sandboxdream) 注意不要把敏感信息提交上来啊！]
 
 
 
