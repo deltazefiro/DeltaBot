@@ -1,18 +1,19 @@
-import asyncio
 import json
 import string
 import random
 import aiohttp
 from typing import Optional
+from nonebot import CommandSession
 
 from ...logger import logger
 
 
-async def generate_trap_url(jump_url: str = 'www.baidu.com') -> (Optional[str], Optional[str]):
+async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.com') -> (Optional[str], Optional[str]):
     """Generate a trap url for stealing the user's ip
     Trap url provided by https://met.red/
 
     Args:
+        session (CommandSession): Current session
         jump_url (str): The url jump to after getting ip
 
     Returns:
@@ -30,6 +31,7 @@ async def generate_trap_url(jump_url: str = 'www.baidu.com') -> (Optional[str], 
             if response.status != 200:
                 logger.error("Cannot connect to 'https://met.red/api/h/location/saveMyUrl', "
                              "Status: [%s]"%response.status)
+                await session.send("Failed to connect to the trap api.")
                 return None
 
             r = json.loads(await response.text())
@@ -42,19 +44,22 @@ async def generate_trap_url(jump_url: str = 'www.baidu.com') -> (Optional[str], 
                     logger.warn("Key was occupied. Regenerate another.")
                 else:
                     logger.error("Unknown response from api: %s" %r)
+                    await session.send("Unknown response from trap api.")
             except (KeyError, IndexError):
                 logger.error("Unknown response from api: %s" %r)
+                await session.send("Unknown response from trap api.")
                 return None
 
     # Regenerate key and retry
-    return generate_trap_url(jump_url)
+    return generate_trap_url(session, jump_url)
 
 
-async def get_ip_from_trap(key: str) -> (Optional[str], Optional[str]):
+async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str], Optional[str]):
     """Get the user's ip from trap api.
     Trap url provided by https://met.red/
 
     Args:
+        session (CommandSession): Current session
         key (str): trap key
 
     Returns:
@@ -69,6 +74,7 @@ async def get_ip_from_trap(key: str) -> (Optional[str], Optional[str]):
             if response.status != 200:
                 logger.error("Cannot connect to 'https://met.red/api/h/location/getKeyIpList', "
                              "Status: [%s]"%response.status)
+                await session.send("Failed to connect to the trap api.")
                 return None
 
             r = json.loads(await response.text())
@@ -80,22 +86,16 @@ async def get_ip_from_trap(key: str) -> (Optional[str], Optional[str]):
                         logger.info("Get ip successfully: %s" % ([d['ip'], d['address']]))
                         return d['ip'], d['address']
                     else:
-                        logger.info("The trap haven't been visited yet!")
+                        logger.error(f"Trap '{key}' haven't been visited.")
+                        await session.send("The trap haven't been visited yet!")
                         return None
                 elif r['code'] == 1 and r['msg'] == 'key不存在,请去创建':
-                    logger.error("Key is not exist. Please generate it before using.")
+                    logger.error(f"Key '{key}' is not exist.")
+                    await session.send("Key is not exist. Please generate it before using.")
                 else:
                     logger.error("Unknown response from api: %s" %r)
+                    await session.send("Unknown response from trap api.")
             except (KeyError, IndexError):
                 logger.error("Unknown response from api: %s" %r)
+                await session.send("Unknown response from trap api.")
                 return None
-
-
-if __name__ == '__main__':
-    async def test():
-        print(await get_ip_from_trap('adcasdfasd'))
-
-
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(test())
-    loop.run_forever()
