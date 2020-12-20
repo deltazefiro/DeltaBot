@@ -3,21 +3,21 @@ from .data_source import *
 
 __plugin_name__ = 'get_ip'
 __plugin_usage__ = r"""
-Get other's ip with a trap website.
+使用陷阱网站获取他人ip
 Trap provided by https://met.red/
 Usage:
-    Use '/gettrap' to generate a trap url (a website can getting IP addr) with a key,
-    Then send the trap url to the one you want to get IP,
-    After they visit the site, use '/getip' and the key to get the information.
+    使用命令 '/gettrap' 生成一个陷阱网址（同时生成一个key），
+    然后将陷阱网址发送给你想获取ip的用户,
+    当此用户进入陷阱网址后, 你可以通过 '/getip' 并输入key获取此用户的ip
     
 Command(s):
  - /gettrap [jump_url]
-    Generate a trap url.
-    [jump_url]: Optional arg, the url jump to after getting ip.
+    生成陷阱网址
+    [jump_url]: <可选参数>陷阱网址跳转到的网址，默认Baidu
     
  - /getip [key]
-    Get the user's ip from trap.
-    Please make sure the trap has been *VISITED*
+    获取用户ip
+    请确保陷阱网址已*被访问*
 """.strip()
 
 @on_command('gettrap', aliases=('get_trap', 'generate_trap', 'generate_trap_url'))
@@ -31,8 +31,6 @@ async def get_trap(session: CommandSession):
         await session.send("TrapURL & Key:")
         await session.send(ret[0])
         await session.send(ret[1])
-    else:
-        await session.send("Failed to get TrapURL.")
 
 @get_trap.args_parser
 async def _(session: CommandSession):
@@ -46,13 +44,11 @@ async def _(session: CommandSession):
 
 @on_command('getip', aliases=('get_ip', 'get_ip_from_trap'))
 async def get_trap(session: CommandSession):
-    key = session.get('key', prompt="Please input the trap key.")
+    key = session.get('key', prompt="请输入陷阱网址的key")
     ret = await get_ip_from_trap(session, key)
 
     if ret:
-        await session.send("IP: %s\nApprox.addr: %s" %(ret[0], ret[1]))
-    else:
-        await session.send("Failed to get IP.")
+        await session.send("IP: %s\n大致位置: %s" %(ret[0], ret[1]))
 
 @get_trap.args_parser
 async def _(session: CommandSession):
@@ -64,6 +60,6 @@ async def _(session: CommandSession):
         return
 
     if not arg:
-        session.pause('Please input the trap key.')
+        session.pause('请输入陷阱网址的key')
 
     session.state[session.current_key] = arg
