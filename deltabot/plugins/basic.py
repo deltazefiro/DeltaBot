@@ -43,7 +43,7 @@ async def ping(session: CommandSession):
 @on_command('log')
 async def log(session: CommandSession):
     msg = session.get('msg', prompt="Please enter a log message.")
-    logger.warn(msg)
+    logger.warn(f"User log received:\n\n\n{msg}\n\n")
     await session.send("Send msg to log successfully.")
 
 @log.args_parser

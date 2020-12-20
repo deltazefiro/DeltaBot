@@ -16,7 +16,7 @@ PLUGINS_PATH = os.path.join(os.path.dirname(__file__), PLUGINS_PATH)
 @on_command('reloadplugins', aliases=('reloadplugin', 'reload'), permission=permission.SUPERUSER)
 async def reloadplugins(session: CommandSession):
     for f in os.listdir(PLUGINS_PATH):
-        if f != '__pycache__' and f != 'reload.py':
+        if f != '__pycache__' and f != 'reload.py' and f[0] != '_':
             plugin_path = 'deltabot.plugins.' + os.path.splitext(f)[0]
             ret = nonebot.plugin.reload_plugin(plugin_path)
             if not ret:

@@ -27,7 +27,7 @@ async def usage(session: CommandSession):
                            + '\n'.join(plugins_list))
         return
 
-    plugin_usage = [p.usage for p in plugins if p.name in (arg, f'[I]{arg}', f'[A]{arg}')]
+    plugin_usage = [p.usage for p in plugins if p.name in (arg, f'[I]{arg}', f'[A]{arg}', f'[H]{arg}')]
     if plugin_usage:
         for p in plugin_usage:
             await session.send(p)
