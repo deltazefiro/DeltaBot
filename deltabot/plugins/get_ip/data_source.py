@@ -31,7 +31,7 @@ async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.
             if response.status != 200:
                 logger.error("Cannot connect to 'https://met.red/api/h/location/saveMyUrl', "
                              "Status: [%s]"%response.status)
-                await session.send("Failed to connect to the trap api.")
+                await session.send("无法连接到陷阱api")
                 return None
 
             r = json.loads(await response.text())
@@ -44,10 +44,10 @@ async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.
                     logger.warn("Key was occupied. Regenerate another.")
                 else:
                     logger.error("Unknown response from api: %s" %r)
-                    await session.send("Unknown response from trap api.")
+                    await session.send("陷阱api返回未知错误")
             except (KeyError, IndexError):
                 logger.error("Unknown response from api: %s" %r)
-                await session.send("Unknown response from trap api.")
+                await session.send("陷阱api返回未知错误")
                 return None
 
     # Regenerate key and retry
@@ -74,7 +74,7 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
             if response.status != 200:
                 logger.error("Cannot connect to 'https://met.red/api/h/location/getKeyIpList', "
                              "Status: [%s]"%response.status)
-                await session.send("Failed to connect to the trap api.")
+                await session.send("无法连接到陷阱api")
                 return None
 
             r = json.loads(await response.text())
@@ -87,15 +87,15 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
                         return d['ip'], d['address']
                     else:
                         logger.error(f"Trap '{key}' haven't been visited.")
-                        await session.send("The trap haven't been visited yet!")
+                        await session.send("陷阱网站还没被访问！请等访问后再试")
                         return None
                 elif r['code'] == 1 and r['msg'] == 'key不存在,请去创建':
                     logger.error(f"Key '{key}' is not exist.")
-                    await session.send("Key is not exist. Please generate it before using.")
+                    await session.send("Key不存在！请先创建")
                 else:
                     logger.error("Unknown response from api: %s" %r)
-                    await session.send("Unknown response from trap api.")
+                    await session.send("陷阱api返回未知错误")
             except (KeyError, IndexError):
                 logger.error("Unknown response from api: %s" %r)
-                await session.send("Unknown response from trap api.")
+                await session.send("陷阱api返回未知错误")
                 return None

@@ -5,7 +5,7 @@ __plugin_name__ = '[A]boom'
 __plugin_usage__ = r"""
 EXPLOSION is ART!!!
 *Required admin permission*
-*Use carefully!*
+**过度使用可能触发风控**
 Command(s):
  - /boom
 """.strip()
