@@ -1,5 +1,9 @@
 from nonebot.default_config import *
 
+# Bot account
+UIN = ''
+PASSWORD = ''
+
 # Administer(s)
 SUPERUSERS = {}
 
@@ -13,7 +17,10 @@ PORT = 8080
 # Output debug info
 DEBUG = False
 
-# NLP Process API
+# [Optional] NLP Process API
 # Get it from http://www.itpk.cn/
 ITPK_API_KEY = ''
 ITPK_APT_SECRET = ''
+
+# [Optional] Qzone
+QZONE_COOKIE = ""

@@ -1,8 +1,9 @@
-from .itpk_api import call_NLP_api
 from aiocqhttp.message import escape
 from nonebot import on_command, CommandSession
 from nonebot import on_natural_language, NLPSession, IntentCommand
 from nonebot.helpers import render_expression
+
+from .itpk_api import call_NLP_api
 
 __plugin_name__ = '[I]NLP'
 __plugin_usage__ = r"""
