@@ -12,7 +12,9 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 ## Features / TODO list
 
-- [x] 基于 ITPK api 进行自然语言对话
+- [x] 自然语言对话
+  - [x] 茉莉机器人API
+  - [x] 腾讯AI开放平台API
 - [x] 简易群轰炸
 - [x] 呼叫管理员 (修改自[Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot/blob/master/xunbot/plugins/call_admin))
 - [x] 重载所有插件 (软重启)

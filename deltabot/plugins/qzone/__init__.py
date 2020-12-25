@@ -38,11 +38,11 @@ async def _(session: CommandSession):
 
 @on_command('anonymous', aliases=('anony', 'anonymous_board'))
 async def anonymous_board(session: CommandSession):
-    content = "【匿名内容】" \
-              "\n\n=============================\n" + \
+    content = "【匿名内容】\n" \
+              "=============================\n" + \
               session.get('content', prompt="请输入发送的内容") + \
-              "\n\n=============================\n" \
-              "本动态由匿名用户发布，管理员对本动态不负任何责任\n" \
+              "\n=============================\n" \
+              "以上内容由匿名用户发布，管理员对本动态不负任何责任\n" \
               "如果其中包含敏感内容，请及时联系管理员"
     ret = await post_emotion(session, content)
     if ret:
