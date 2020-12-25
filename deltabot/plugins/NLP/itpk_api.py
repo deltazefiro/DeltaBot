@@ -24,6 +24,7 @@ async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
 
                 if response.status != 200:
                     # 如果 HTTP 响应状态码不是 200，说明调用失败
+                    await session.send("对话api调用发生错误 :(")
                     return None
 
                 resp_text = await response.text()
@@ -31,6 +32,7 @@ async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
                 if resp_text:
                     return resp_text
 
-    except (aiohttp.ClientError, json.JSONDecodeError, KeyError):
-        # 抛出上面任何异常，说明调用失败
+    except (aiohttp.ClientError, json.JSONDecodeError, KeyError) as e:
+        logger.error(f"An error occupied when calling api: {e}")
+        await session.send("对话api调用发生错误 :(")
         return None

@@ -1,9 +1,12 @@
 from aiocqhttp.message import escape
-from nonebot import on_command, CommandSession
+from nonebot import on_command, CommandSession, get_bot
 from nonebot import on_natural_language, NLPSession, IntentCommand
 from nonebot.helpers import render_expression
 
-from .itpk_api import call_NLP_api
+from ...logger import logger
+
+from . import itpk_api
+from . import tencent_api
 
 __plugin_name__ = '[I]NLP'
 __plugin_usage__ = r"""
@@ -13,25 +16,24 @@ Based on ITPK api.
 Please DO NOT call the plugin *manually*.
 """.strip()
 
-EXPR_DONT_UNDERSTAND = (
-    '我现在还不太明白你在说什么呢，但没关系，以后的我会变得更强呢！',
-    '我有点看不懂你的意思呀，可以跟我聊些简单的话题嘛',
-    '其实我不太明白你的意思……',
-    '抱歉哦，我现在的能力还不能够明白你在说什么，但我会加油的～'
-)
-
 
 @on_command('NLP')
 async def NLP(session: CommandSession):
     # 获取可选参数，这里如果没有 message 参数，命令不会被中断，message 变量会是 None
     message = session.state.get('message')
 
-    reply = await call_NLP_api(session, message)
+    api = get_bot().config.NLP_API
+    if api == 'tencent':
+        reply = await tencent_api.call_NLP_api(session, message)
+    elif api == 'itpk':
+        reply = await itpk_api.call_NLP_api(session, message)
+    else:
+        logger.warn("Invalid NLP api type. Please config them in config.py to enable NL conversation function.")
+        reply = "闲聊对话功能未启用，请使用'/help'查看可用命令"
+
     if reply:
         # 如果调用机器人成功，得到了回复，则转义之后发送给用户
         await session.send(escape(reply))
-    else:
-        await session.send(render_expression(EXPR_DONT_UNDERSTAND))
 
 
 @on_natural_language

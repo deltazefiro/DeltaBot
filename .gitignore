@@ -136,6 +136,7 @@ dmypy.json
 test.py
 tester.py
 temp.py
+test/
 
 # Security
 /cqhttp/

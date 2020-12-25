@@ -1,6 +1,6 @@
 import nonebot
 import time
-from nonebot import on_request, RequestSession, helpers
+from nonebot import on_request, RequestSession, helpers, get_bot
 
 __plugin_name__ = '[I]request_process'
 __plugin_usage__ = r"""
@@ -15,4 +15,4 @@ async def approve_friend_adding(session: RequestSession):
     await helpers.send_to_superusers(nonebot.get_bot(),
                                      "Approved user <%s>'s friend-adding request." %session.event.user_id)
     time.sleep(3)
-    await session.send("Hello!")
+    await session.send(get_bot().config.WELCOME_MESSAGE)
