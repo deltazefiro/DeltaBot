@@ -143,3 +143,4 @@ test/
 !/cqhttp/go-cqhttp
 data/
 /deltabot/config.py
+config.ini

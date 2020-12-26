@@ -56,7 +56,6 @@ async def post_emotion(session: CommandSession, content: str) -> Optional[bool]:
         "qzreferrer": f"https://user.qzone.qq.com/{uin}/"
     }
 
-    # logger.warn(f"\n\n{url}\n{headers}\n{data}\n")
 
     async with aiohttp.ClientSession() as sess:
         async with sess.post(url, headers=headers, data=data) as response:
