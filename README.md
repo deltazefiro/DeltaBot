@@ -36,6 +36,35 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 
 
+## Usage
+
+1. 安装Python3.7+
+
+2. 安装依赖库
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. 修改 cqhttp 配置文件
+
+   将账号密码填充入 cqhttp/config_template.hjson 并将此文件重命名为 config.hjson
+
+4. 修改 deltabot 配置文件
+
+   按照文件内说明将配置信息填充入 deltabot/config_template.py 并将其重命名为 config.py
+
+5. 运行 deltabot 与 cqhttp
+
+   在**本项目根目录**下运行命令：
+
+   ```bash
+   cd cqhttp
+   python3 ../start.py & ./go-cqhttp && fg
+   ```
+
+
+
 ## Thanks
 
 感谢以下项目:

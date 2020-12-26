@@ -68,7 +68,7 @@ async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
                     logger.debug("Chat answer not found. Render not understanding instead.")
                     return render_expression(config.EXPR_DONT_UNDERSTAND)
                 elif r['msg'] == 'app_id not found' or r['msg'] == 'app_key not found':
-                    logger.warn("API config invalid / unfilled. Please fill them in config.py to enable NL conversation function.")
+                    logger.warning("API config invalid / unfilled. Please fill them in config.py to enable NL conversation function.")
                     await session.send("对话api配置错误！请联系管理员")
                     return None
                 else:
