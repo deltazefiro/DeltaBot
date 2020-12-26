@@ -1,7 +1,8 @@
 from os import path
-from . import config
 import nonebot
-import os
+
+from . import config
+from . import logger
 
 def run():
     nonebot.init(config)

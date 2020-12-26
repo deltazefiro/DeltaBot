@@ -2,8 +2,7 @@ from aiocqhttp.message import escape
 from nonebot import on_command, CommandSession, get_bot
 from nonebot import on_natural_language, NLPSession, IntentCommand
 from nonebot.helpers import render_expression
-
-from ...logger import logger
+from loguru import logger
 
 from . import itpk_api
 from . import tencent_api
