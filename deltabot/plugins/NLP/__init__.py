@@ -1,7 +1,6 @@
 from aiocqhttp.message import escape
 from nonebot import on_command, CommandSession, get_bot
 from nonebot import on_natural_language, NLPSession, IntentCommand
-from nonebot.helpers import render_expression
 from loguru import logger
 
 from . import itpk_api
@@ -27,7 +26,7 @@ async def NLP(session: CommandSession):
     elif api == 'itpk':
         reply = await itpk_api.call_NLP_api(session, message)
     else:
-        logger.warn("Invalid NLP api type. Please config them in config.py to enable NL conversation function.")
+        logger.warning("Invalid NLP api type. Please config them in config.py to enable NL conversation function.")
         reply = "闲聊对话功能未启用，请使用'/help'查看可用命令"
 
     if reply:
