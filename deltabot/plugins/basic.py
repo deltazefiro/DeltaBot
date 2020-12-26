@@ -2,7 +2,7 @@ from nonebot import on_command, CommandSession, command
 import nonebot
 import time
 import asyncio
-from ..logger import logger
+from loguru import logger
 from .._version import __version__
 
 async def __get_formatted_time():

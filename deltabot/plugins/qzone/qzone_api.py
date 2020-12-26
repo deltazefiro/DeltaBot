@@ -2,7 +2,7 @@ import aiohttp
 from nonebot import get_bot, CommandSession
 from typing import Optional
 
-from ...logger import logger
+from loguru import logger
 
 def _get_g_tk(cookie: str) -> int:
     cookie = dict(map(lambda s: s.partition('=')[::2], cookie.split('; ')))

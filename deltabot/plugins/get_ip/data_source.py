@@ -5,7 +5,7 @@ import aiohttp
 from typing import Optional
 from nonebot import CommandSession
 
-from ...logger import logger
+from loguru import logger
 
 
 async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.com') -> (Optional[str], Optional[str]):
