@@ -4,7 +4,7 @@ import time
 
 import nonebot
 from nonebot import on_command, CommandSession, helpers
-from ..logger import logger
+from loguru import logger
 
 __plugin_name__ = 'call_admin'
 __plugin_usage__ = r"""

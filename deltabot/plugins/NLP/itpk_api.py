@@ -4,6 +4,7 @@ from typing import Optional
 import aiohttp
 import nonebot
 from nonebot import CommandSession
+from loguru import logger
 
 async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
 
