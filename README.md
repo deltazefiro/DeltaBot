@@ -1,4 +1,4 @@
-#DeltaBot
+# DeltaBot
 
 DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的的QQ机器人
 
@@ -16,6 +16,7 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
   - [x] 茉莉机器人API
   - [x] 腾讯AI开放平台API
 - [x] 简易群轰炸
+- [x] 时间管理助手
 - [x] 呼叫管理员 (修改自[Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot/blob/master/xunbot/plugins/call_admin))
 - [x] 重载所有插件 (软重启)
 - [x] 自动通过好友请求
