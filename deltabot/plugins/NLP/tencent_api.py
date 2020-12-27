@@ -2,7 +2,7 @@ import json
 import random
 import string
 import time
-from urllib.parse import quote
+from urllib.parse import quote_plus
 import hashlib
 from typing import Optional
 import aiohttp
@@ -27,7 +27,7 @@ def get_req_sign(params: dict, app_key) -> str:
     """
     sign = ''
     for key,value in sorted(params.items()):
-        sign += f'{key}={quote(str(value))}&'
+        sign += f'{key}={quote_plus(str(value))}&'
     sign += f'app_key={app_key}'
     sign = hashlib.md5(sign.encode(encoding='UTF-8')).hexdigest().upper()
     return sign
