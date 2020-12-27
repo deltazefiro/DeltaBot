@@ -1,0 +1,6 @@
+nonebot
+aiohttp
+requests
+lxml
+loguru
+aiocqhttp

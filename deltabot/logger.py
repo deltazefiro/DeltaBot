@@ -1,6 +1,7 @@
 import sys
 import logging
 from loguru import logger
+from . import config
 
 class InterceptHandler(logging.Handler):
     def emit(self, record):
@@ -28,7 +29,7 @@ logging.getLogger("nonebot").addHandler(InterceptHandler())
 
 logger.remove()
 logger.add(sys.stdout,
-           level='DEBUG',
+           level= 'DEBUG' if config.DEBUG else 'INFO',
            colorize=True,
            format="<g>{time:YYYY-MM-DD HH:mm:ss}</g> <level>| {level} |</level> <c>{name}</c>:<c>{function}</c> - <level>{message}</level>")
 
