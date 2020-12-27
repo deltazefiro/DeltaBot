@@ -1,4 +1,4 @@
-# DeltaBot
+#DeltaBot
 
 DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的的QQ机器人
 
@@ -34,6 +34,13 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 - [ ] scp基金会猜标号小游戏
 - [ ] 子插件管理
 
+
+- [ ] 群管理
+  - [ ] 指令禁言
+  - [ ] 发布群公告
+  - [ ] 撤回成员消息
+  - [ ] 踢出不活跃群员
+  - [ ] 全局黑名单 
 
 
 ## Usage
