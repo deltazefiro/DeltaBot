@@ -66,13 +66,12 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
    按照文件内说明将配置信息填充入 *deltabot/config_template.py* 并将其重命名为 *config.py*
 
-6. 运行 deltabot 与 cqhttp
+6. 运行 deltabot  **[go-cqhttp会自动被deltabot启动，请勿手动启动]**
 
    在**本项目根目录**下运行命令：
 
    ```bash
-   cd cqhttp
-   python3 ../start.py & ./go-cqhttp && fg
+   python3 start.py
    ```
 
 
