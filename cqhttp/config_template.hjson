@@ -1,6 +1,6 @@
 {
-    uin: [机器人QQ号]
-    password: [机器人QQ密码]
+    uin: [uin]
+    password: [password]
     encrypt_password: false
     password_encrypted: ""
     enable_db: true
@@ -20,21 +20,21 @@
     proxy_rewrite: ""
     heartbeat_interval: 0
     http_config: {
-        enabled: true
+        enabled: false
         host: 0.0.0.0
         port: 5700
         timeout: 0
         post_urls: {}
     }
     ws_config: {
-        enabled: true
+        enabled: false
         host: 0.0.0.0
         port: 6700
     }
     ws_reverse_servers: [
         {
             enabled: true
-            reverse_url: ws://127.0.0.1:8080/ws/
+            reverse_url: ws://127.0.0.1:[port]/ws/
             reverse_api_url: ""
             reverse_event_url: ""
             reverse_reconnect_interval: 3000
