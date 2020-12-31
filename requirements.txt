@@ -1,4 +1,4 @@
-nonebot
+nonebot>=1.8.0
 aiohttp
 requests
 lxml
