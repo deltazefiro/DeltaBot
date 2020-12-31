@@ -46,16 +46,16 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 1. 安装Python3.7+ **[注意必须Python版本必须>=3.7]**
 
-2. 安装依赖库
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. 克隆本项目
+2. 克隆本项目
 
    ```bash
    git clone --depth=1 https://github.com/233a344a455/DeltaBot.git
+   ```
+
+3. 安装依赖库
+
+   ```bash
+   pip install -r requirements.txt
    ```
 
 4. 修改 cqhttp 配置文件
