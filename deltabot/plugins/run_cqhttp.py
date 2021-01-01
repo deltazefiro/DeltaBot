@@ -1,14 +1,17 @@
-from nonebot import on_startup
-from loguru import logger
-import subprocess
 import os
-# import logging
-# import threading
+import subprocess
+
+from loguru import logger
+from nonebot import on_startup
 
 from .. import config
 
 
-def config_cqhttp():
+# import logging
+# import threading
+
+
+def _configure_cqhttp():
     with open('cqhttp/config_template.hjson', 'r') as f:
         cq_config = f.read()
 
@@ -29,7 +32,13 @@ async def run_cqhttp():
     #         for line in iter(cqhttp_process.stdout.readline, b''):  # b'\n'-separated lines
     #             logger.info(line.decode('utf-8').strip())
 
-    config_cqhttp()
+    if config.AUTO_CONFIGURE_GO_CQHTTP:
+        _configure_cqhttp()
+        logger.info("Generate go-cqhttp config successfully.")
+
+    if not config.AUTO_START_GO_CQHTTP:
+        logger.warning("Auto-start go-cqhttp is disabled. Please start go-cqhttp manually on port.")
+        return
 
     # Check is go-cqhttp executable
     if not os.access('cqhttp/go-cqhttp', os.X_OK):
@@ -38,10 +47,8 @@ async def run_cqhttp():
         os.chmod('cqhttp/go-cqhttp', mode)
         logger.info("Set permissions successful. Sudo authority will not required on next running.")
 
-
     logger.info("Start go-cqhttp!")
     cqhttp_process = subprocess.Popen(['cd cqhttp;./go-cqhttp'], shell=True)
-
 
     #                                   stdout=subprocess.PIPE,
     #                                   stderr=subprocess.STDOUT)
