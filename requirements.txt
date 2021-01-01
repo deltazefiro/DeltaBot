@@ -4,3 +4,9 @@ requests
 lxml
 loguru
 aiocqhttp
+
+# Qzone simulate login
+opencv-python[qzone]
+selenium[qzone]
+pillow[qzone]
+numpy[qzone]

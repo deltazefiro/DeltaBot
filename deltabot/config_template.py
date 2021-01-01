@@ -54,4 +54,10 @@ ITPK_API_KEY = ''
 ITPK_APT_SECRET = ''
 
 # =========== Qzone ===========
+
+# ChromeDriver executable path
+CHROME_DRIVER_PATH = ''
 QZONE_COOKIE = ""
+
+# Timeout
+QZONE_SIM_LOGIN_TIMEOUT = 8
