@@ -7,6 +7,10 @@ Config template. Please fill up the file and rename it to 'config.py'
 
 # =========== Basic config ===========
 
+# Auto manage go-cqhttp
+AUTO_CONFIG_GO_CQHTTP = True
+AUTO_START_GO_CQHTTP = True
+
 # Bot account
 UIN = ''
 PASSWORD = ''
