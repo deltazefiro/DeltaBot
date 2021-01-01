@@ -1,7 +1,6 @@
 from nonebot import on_command, CommandSession, get_loaded_plugins
 from nonebot import on_natural_language, NLPSession, IntentCommand
 from .._version import __version__
-import nonebot
 
 __plugin_name__ = 'usage'
 __plugin_usage__ = r"""
@@ -22,17 +21,21 @@ async def usage(session: CommandSession):
                         for p in plugins
                         if ('[I]' not in p.name) and ('[H]' not in p.name)]
         await session.send(__plugin_usage__)
-        await session.send('DeltaBot v%s'%__version__
+        await session.send('DeltaBot v%s' % __version__
                            + '\n插件列表:\n'
                            + '\n'.join(plugins_list))
         return
 
-    plugin_usage = [p.usage for p in plugins if p.name in (arg, f'[I]{arg}', f'[A]{arg}', f'[H]{arg}')]
+    plugin_usage = [p.usage for p in plugins if arg == p.name.replace('[I]', '')
+                                                            .replace('[A]', '')
+                                                            .replace('[H]', '')
+                                                            .replace('[E]', '')]
     if plugin_usage:
         for p in plugin_usage:
             await session.send(p)
     else:
         await session.send("功能不存在")
+
 
 @on_natural_language(keywords=['功能', '帮助', '使用', '用法', 'help', 'usage'])
 async def _(session: NLPSession):
@@ -42,6 +45,7 @@ async def _(session: NLPSession):
 @on_command('unknown_command')
 async def unknown_command(session: CommandSession):
     await session.send("未知命令，请输入/help查看帮助")
+
 
 @on_natural_language(keywords='/')
 async def _(session: NLPSession):
