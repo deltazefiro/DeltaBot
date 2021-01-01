@@ -44,6 +44,8 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 ## Usage
 
+### Linux
+
 1. 安装Python3.7+ **[注意必须Python版本必须>=3.7]**
 
 2. 克隆本项目
@@ -64,7 +66,7 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
    将配置信息填充入 *deltabot/config_template.py* 并将其重命名为 *config.py*
 
-   **[go-cqhttp的配置文件将自动使用DeltaBot的配置文件填充]**
+   [go-cqhttp的配置文件将自动使用DeltaBot的配置文件填充]
 
    
 
@@ -76,9 +78,17 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
    python3 start.py
    ```
 
-   **[go-cqhttp将自动被DeltaBot启动，请勿手动启动]**
+   **[请一定进入本项目所在目录启动项目，否则可能出现相对位置错误]**
 
-   
+   [go-cqhttp将自动被DeltaBot启动，请勿手动启动]
+
+
+
+### Windows
+
+- 待补充
+
+
 
 ## Thanks
 
