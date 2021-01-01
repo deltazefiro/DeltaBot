@@ -1,6 +1,7 @@
 from nonebot import on_startup
 from loguru import logger
 import subprocess
+import os
 # import logging
 # import threading
 
@@ -30,8 +31,17 @@ async def run_cqhttp():
 
     config_cqhttp()
 
+    # Check is go-cqhttp executable
+    if not os.access('cqhttp/go-cqhttp', os.X_OK):
+        mode = os.stat('cqhttp/go-cqhttp').st_mode | 0o100
+        logger.warning("go-cqhttp is not executable! Sudo authority required to set permissions.")
+        os.chmod('cqhttp/go-cqhttp', mode)
+        logger.info("Set permissions successful. Sudo authority will not required on next running.")
+
+
     logger.info("Start go-cqhttp!")
     cqhttp_process = subprocess.Popen(['cd cqhttp;./go-cqhttp'], shell=True)
+
 
     #                                   stdout=subprocess.PIPE,
     #                                   stderr=subprocess.STDOUT)
