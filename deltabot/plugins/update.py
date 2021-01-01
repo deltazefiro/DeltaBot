@@ -1,8 +1,8 @@
-from nonebot import CommandSession, on_command, permission
-from aiocqhttp.message import escape
-from loguru import logger
-from subprocess import PIPE, STDOUT, CalledProcessError
 import subprocess
+from subprocess import PIPE, STDOUT, CalledProcessError
+
+from loguru import logger
+from nonebot import CommandSession, on_command, permission
 
 __plugin_name__ = '[E][A]update'
 __plugin_usage__ = r"""
@@ -22,11 +22,11 @@ async def update(session: CommandSession):
     logger.warning("Start pulling from git ...")
     await session.send("Start pulling from git ...")
     try:
-        process = subprocess.run(['git', 'pull'], stdout=PIPE, stderr=STDOUT)
-
-        logger.info(process.stdout.decode('utf-8').strip())
-        await session.send(escape(process.stdout.decode('utf-8').strip()))
+        output = subprocess.run(['git', 'pull'], stdout=PIPE, stderr=STDOUT).stdout.decode('utf-8').strip()
+        logger.info(output)
+        msg = output.replace('https://', '').replace('http://', '') # 防止QQ将链接渲染为卡片
+        await session.send(msg.strip())
 
     except CalledProcessError as e:
         logger.error(f"Fail to update: {e}")
-        await session.send(escape("Fail to update: {e}"))
+        await session.send(f"Fail to update: {e}")
