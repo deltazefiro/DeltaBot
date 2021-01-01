@@ -1,4 +1,5 @@
 from nonebot import CommandSession, on_command, permission
+from aiocqhttp.message import escape
 from loguru import logger
 from subprocess import PIPE, STDOUT, CalledProcessError
 import subprocess
@@ -17,9 +18,9 @@ async def update(session: CommandSession):
     try:
         process = subprocess.run(['git', 'pull'], stdout=PIPE, stderr=STDOUT)
 
-        logger.info(process.stdout.decode('utf-8'))
-        await session.send(process.stdout.decode('utf-8'))
+        logger.info(process.stdout.decode('utf-8').strip())
+        await session.send(escape(process.stdout.decode('utf-8').strip()))
 
     except CalledProcessError as e:
         logger.error(f"Fail to update: {e}")
-        await session.send(f"Fail to update: {e}")
+        await session.send(escape("Fail to update: {e}"))
