@@ -2,6 +2,7 @@ from nonebot import on_command, CommandSession
 from nonebot.command.argfilter.controllers import handle_cancellation
 
 from .data_source import *
+from loguru import logger
 
 __plugin_name__ = '[H]reimu'
 __plugin_usage__ = r"""
@@ -30,7 +31,7 @@ async def reimu(session: CommandSession):
 
         idx = int(await session.aget('idx', prompt='Index?(exit if input invalid)'))#, arg_filters=[handle_cancellation]))
 
-        if 0 < idx < len(search_result):
+        if 0 < idx <= len(search_result):
             downlinks = await get_download_links(search_result[idx-1][1])
             if downlinks:
                 await session.send("Downlinks:\n\n%s" %downlinks)
@@ -40,15 +41,13 @@ async def reimu(session: CommandSession):
             await session.send("Invalid input. Exit...")
 
     else:
-        print("Not found reimu")
+        logger.warning("Not found reimu")
         await session.send("Search not found.")
 
 
 @reimu.args_parser
 async def _(session: CommandSession):
     stripped_arg = session.current_arg_text.strip()
-
-    print(session.current_key, stripped_arg)
 
     if session.is_first_run:
         if stripped_arg:

@@ -2,6 +2,7 @@
 
 import requests
 from lxml import etree
+from loguru import logger
 import time
 
 MAXINFO_REIMU = 5
@@ -34,7 +35,7 @@ async def get_search_result(key_word: str) -> list or None:
 
     headers = html.xpath('//article/header/h2/a/text()')
     urls = html.xpath('//article/header/h2/a/@href')
-    print("Now get {} post from search page".format(len(headers)))
+    logger.info("Now get {} post from search page".format(len(headers)))
 
     processed_headers = []
     processed_urls = []
@@ -43,10 +44,10 @@ async def get_search_result(key_word: str) -> list or None:
             processed_headers.append(headers[i])
             processed_urls.append(urls[i])
         else:
-            print("This title {} does not meet the requirements".format(header))
+            logger.info("This title {} does not meet the requirements".format(header))
 
     n_posts = len(processed_headers)
-    print("Get {} post after processing".format(n_posts))
+    logger.info("Get {} post after processing".format(n_posts))
 
     return list(zip(processed_headers, processed_urls))
 
@@ -77,7 +78,7 @@ async def get_search_result(key_word: str) -> list or None:
 async def get_download_links(url) -> str:
     ret = ""
 
-    print("Now starting get the {}".format(url))
+    logger.info("Now starting get the {}".format(url))
     html_data = requests.get(url)
     html = etree.HTML(html_data.text)
 
@@ -96,7 +97,7 @@ async def get_download_links(url) -> str:
                 a = "\n {}  {}  {} ".format(a_t_s, a_h_s, pres[i + 1].strip())
                 ret += a
     else:
-        print("Failed to get download link from {}".format(url))
+        logger.error("Failed to get download link from {}".format(url))
 
     return ret
 
