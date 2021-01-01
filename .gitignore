@@ -145,3 +145,6 @@ test/
 data/
 /deltabot/config.py
 config.ini
+
+# ChromeDriver
+chromedriver

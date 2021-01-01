@@ -30,7 +30,7 @@ async def post_emotion(session: CommandSession, content: str) -> Optional[bool]:
     cookie = config.QZONE_COOKIE
 
     if not (cookie and uin):
-        logger.waring("Qzone cookie / uin is empty. Please fill them in config.py to enable qzone function.")
+        logger.warning("Qzone cookie / uin is empty. Please fill them in config.py to enable qzone function.")
         await session.send("插件未启用，请联系管理员")
         return False
 
