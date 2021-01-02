@@ -94,10 +94,10 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 感谢以下项目:
 
-- QQ协议端 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp)
+- QQ协议端 [Mrs4s/go-cqhttp](https://github.com/Mrs4s/go-cqhttp)
 - 前端框架 [NoneBot](https://github.com/nonebot/nonebot)
-- 部分代码修改自 [XUN_Bot](https://github.com/Angel-Hair/XUN_Bot)
-
+- 部分代码修改自 [Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot)
+- Qzone模拟登录修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)
 
 
 ## License

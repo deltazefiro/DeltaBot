@@ -13,6 +13,7 @@ import pickle
 import random
 import time
 import traceback
+from threading import Lock
 from urllib.request import urlretrieve
 
 import cv2
@@ -28,20 +29,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from ... import config
 
-
-get_path = lambda p: os.path.join(os.path.dirname(__file__), p)
-
-UIN = str(config.UIN)
-PASSWORD = config.PASSWORD
-CHROME_DRIVER_PATH = config.CHROME_DRIVER_PATH
-
-# if not force and os.path.exists(self.cookies_file):
-#     logger.info('发现已存在 cookies 文件，免登录', 2)
-#     with open(self.cookies_file, 'rb') as f:
-#         self.cookies = pickle.load(f)
-#         self.g_tk = self.g_tk(self.cookies)
-#
-#         return self.cookies, self.g_tk
+get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
 
 class QzoneSimLogin(object):
 
@@ -71,7 +59,7 @@ class QzoneSimLogin(object):
         self.options.add_argument('--no-sandbox')  # 绕过操作系统沙箱环境
         self.options.add_argument('--disable-dev-shm-usage')  # 解决资源限制，仅适用于 Linux 系统
 
-        self.driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, options=self.options)
+        self.driver = webdriver.Chrome(executable_path=config.CHROME_DRIVER_PATH, options=self.options)
         self.driver.implicitly_wait(QzoneSimLogin.timeout)
 
         # 防止通过 window.navigator.webdriver === true 检测模拟浏览器
@@ -87,7 +75,7 @@ class QzoneSimLogin(object):
         })
 
         # 隐藏无头浏览器特征，增加检测难度
-        with open(get_path('resources/stealth.min.js')) as f:
+        with open(get_relative_path('resources/stealth.min.js')) as f:
             stealth_js = f.read()
 
             self.driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
@@ -97,13 +85,8 @@ class QzoneSimLogin(object):
         # 统配显式等待
         self.wait = WebDriverWait(self.driver, timeout=QzoneSimLogin.timeout, poll_frequency=0.5)
 
-        self.cookies_file = get_path('cookies.pkl')
-        self.username = UIN
-        self.password = PASSWORD
-
-        # QQ空间令牌
-        self.g_tk = None
-        self.cookies = None
+        self.uin = str(config.UIN)
+        self.password = config.PASSWORD
 
     def login(self) -> (str, str):
         """登录 QQ 空间
@@ -123,7 +106,7 @@ class QzoneSimLogin(object):
         logger.info("正在模拟输入账号...")
         u = self.driver.find_element_by_id('u')
         u.clear()
-        self.send_keys_delay_random(u, self.username)
+        self.send_keys_delay_random(u, self.uin)
 
         time.sleep(2)
 
@@ -136,18 +119,13 @@ class QzoneSimLogin(object):
 
         self.__fuck_captcha()
 
-        # cookies 持久化
         cookies = {cookie['name']: cookie['value'] for cookie in self.driver.get_cookies()}
-        with open(self.cookies_file, 'wb') as f:
-            pickle.dump(cookies, f)
-
-        self.cookies = cookies
-        self.g_tk = self.calculate_g_tk(self.cookies)
+        g_tk = self.calculate_g_tk(cookies)
 
         self.driver.quit()
         logger.info("模拟登录成功，已关闭浏览器")
 
-        return self.get_str_cookies(self.cookies), self.g_tk
+        return self.get_str_cookies(cookies), g_tk
 
     @staticmethod
     def __get_track(distance):
@@ -217,7 +195,7 @@ class QzoneSimLogin(object):
         template = cv2.imread(slide_block, 0)  # 缺口图块
 
         # 图片置灰
-        tmp_dir = get_path('./images/tmp/')
+        tmp_dir = get_relative_path('./images/tmp/')
         os.makedirs(tmp_dir, exist_ok=True)
         image_gray = os.path.join(tmp_dir, 'bg_block_gray.jpg')
         template_gray = os.path.join(tmp_dir, 'slide_block_gray.jpg')
@@ -257,7 +235,6 @@ class QzoneSimLogin(object):
         logger.info('正在检查是否存在滑动验证码...')
         if not (self.__is_visibility((By.ID, 'newVcodeArea'))):
             logger.info('无滑动验证码，直接登录')
-
             return
 
         logger.info('发现滑动验证码，正在验证...')
@@ -272,27 +249,29 @@ class QzoneSimLogin(object):
             bg_img_width = bg_block.size['width']
             bg_img_x = bg_block.location['x']
             bg_img_url = bg_block.get_attribute('src')
+            print(bg_img_url)
 
             # 滑块图
             slide_block = self.wait.until(EC.visibility_of_element_located((By.ID, 'slideBlock')))
             slide_block_x = slide_block.location['x']
             slide_img_url = slide_block.get_attribute('src')
+            print(slide_img_url)
 
             # 小滑块
             drag_thumb = self.wait.until(EC.visibility_of_element_located((By.ID, 'tcaptcha_drag_thumb')))
 
             # 下载背景图和滑块图
-            os.makedirs(get_path('./images/'), exist_ok=True)
-            logger.warning(bg_img_url, slide_img_url)
-            urlretrieve(bg_img_url, get_path('./images/bg_block.jpg'))
-            urlretrieve(slide_img_url, get_path('./images/slide_block.jpg'))
+            os.makedirs(get_relative_path('./images/'), exist_ok=True)
+            # logger.warning(bg_img_url, slide_img_url)
+            urlretrieve(bg_img_url, get_relative_path('./images/bg_block.jpg'))
+            urlretrieve(slide_img_url, get_relative_path('./images/slide_block.jpg'))
 
             # 获取图片实际宽度的缩放比例
-            bg_real_width = Image.open(get_path('./images/bg_block.jpg')).width
+            bg_real_width = Image.open(get_relative_path('./images/bg_block.jpg')).width
             width_scale = bg_real_width / bg_img_width
 
             # 获取滑块与缺口的水平方向距离
-            distance_x = self.__get_distance_x(get_path('./images/bg_block.jpg'), get_path('./images/slide_block.jpg'))
+            distance_x = self.__get_distance_x(get_relative_path('./images/bg_block.jpg'), get_relative_path('./images/slide_block.jpg'))
             real_distance_x = distance_x / width_scale - (slide_block_x - bg_img_x) + 4
 
             # 获取移动轨迹
@@ -339,25 +318,10 @@ class QzoneSimLogin(object):
 
         return h & 0x7fffffff
 
+
     @staticmethod
     def get_str_cookies(cookies: dict) -> str:
-        return "; ".join([str(arg) + "=" + str(key) for arg, key in cookies.items()])
-
-    def run(self):
-        try:
-            return self.login()
-        except AssertionError as ae:
-            logger.error('参数错误：{}'.format(str(ae)))
-        except NoSuchElementException as nse:
-            logger.error('匹配元素超时，超过{}秒依然没有发现元素：{}'.format(QzoneSimLogin.timeout, str(nse)))
-        except TimeoutException:
-            logger.error(f'请求超时：{self.driver.current_url}')
-        except UserWarning as uw:
-            logger.error('警告：{}'.format(str(uw)))
-        except WebDriverException as wde:
-            logger.error(f'未知错误：{str(wde)}')
-        except Exception as e:
-            logger.error('出错：{} 位置：{}'.format(str(e), traceback.format_exc()))
+        return ";".join([str(arg) + "=" + str(key) for arg, key in cookies.items()])
 
     def send_keys_delay_random(self, element, keys, min_delay=0.13, max_delay=0.52):
         """
@@ -373,6 +337,34 @@ class QzoneSimLogin(object):
             time.sleep(random.uniform(min_delay, max_delay))
 
 
-if __name__ == '__main__':
-    spider = QzoneSimLogin()
-    spider.run()
+def run(thread_lock: Lock) -> None:
+    """
+    Simulate login Qzone and save cookies & g_tk
+    Args:
+        thread_lock (Lock): thread lock
+
+    Returns:
+        None
+    """
+    logger.warning("Simulate Qzone login thread started!")
+    with thread_lock:
+        s = QzoneSimLogin()
+        try:
+            cookies, g_tk =  s.login()
+        except AssertionError as ae:
+            logger.error('参数错误：{}'.format(str(ae)))
+        except NoSuchElementException as nse:
+            logger.error('匹配元素超时，超过{}秒依然没有发现元素：{}'.format(s.timeout, str(nse)))
+        except TimeoutException:
+            logger.error(f'请求超时：{s.driver.current_url}')
+        except UserWarning as uw:
+            logger.error('警告：{}'.format(str(uw)))
+        except WebDriverException as wde:
+            logger.error(f'未知错误：{str(wde)}')
+        except Exception as e:
+            logger.error('出错：{} 位置：{}'.format(str(e), traceback.format_exc()))
+        else:
+            with open(get_relative_path('./data/cookies.pkl'), 'wb') as f:
+                pickle.dump([cookies, g_tk], f)
+            logger.info("Succeeded in getting Qzone login token.")
+    logger.warning("Simulate Qzone login thread finished.")
