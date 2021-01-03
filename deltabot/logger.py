@@ -20,7 +20,7 @@ class InterceptHandler(logging.Handler):
         logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
 
 
-for log in [logging.root, logging.getLogger('nonebot'), logging.getLogger('aiocqhttp')]:
+for log in [logging.getLogger('nonebot'), logging.getLogger('aiocqhttp')]:
     for handler in log.handlers:
         log.removeHandler(handler)
 
