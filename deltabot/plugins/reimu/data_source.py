@@ -1,12 +1,13 @@
 """Modified from https://github.com/Angel-Hair/XUN_Bot/"""
-
-import requests
-from lxml import etree
+from typing import Optional
+from urllib.request import getproxies
+from nonebot import CommandSession
+import aiohttp
+import asyncio
 from loguru import logger
-import time
+from lxml import etree
 
-MAXINFO_REIMU = 5
-
+# MAXINFO_REIMU = 5
 #
 # async def from_reimu_get_info(key_word: str) -> str or None:
 #     repass = ""
@@ -22,15 +23,37 @@ MAXINFO_REIMU = 5
 #
 #     return repass
 
+def get_local_proxy():
+    try:
+        return getproxies()['http']
+    except KeyError:
+        return None
 
-async def get_search_result(key_word: str) -> list or None:
-    html_data = requests.get('https://blog.reimu.net/search/' + key_word)
-    html = etree.HTML(html_data.text)
+async def get_search_result(session: CommandSession, key_word: str) -> Optional[list]:
+    try:
+        async with aiohttp.ClientSession() as client:
+            async with client.get('https://blog.reimu.net/search/' + key_word, timeout=10, proxy=get_local_proxy()) as response:
+
+                if response.status != 200:
+                    logger.error("Cannot connect to https://blog.reimu.net/, "
+                                 "Status: [%s]"%response.status)
+                    await session.send("无法连接到搜索服务器")
+                    return None
+
+                r = await response.text()
+    except asyncio.TimeoutError:
+        logger.error("Connect to https://blog.reimu.net/ timeout. Please add '104.28.28.43 blog.reimu.net' in host file to access it.")
+        await session.send("请求超时")
+        return None
+
+    html = etree.HTML(r)
 
     fund_l = html.xpath('//h1[@class="page-title"]/text()')
     if fund_l:
         fund = fund_l[0]
         if fund == "未找到":
+            logger.warning("No search results are found.")
+            await session.send("无搜索结果，试试换个关键词？")
             return None
 
     headers = html.xpath('//article/header/h2/a/text()')
@@ -52,11 +75,6 @@ async def get_search_result(key_word: str) -> list or None:
     return list(zip(processed_headers, processed_urls))
 
 
-
-
-
-
-
     # if n_posts > MAXINFO_REIMU:
     #     processed_headers = processed_headers[:MAXINFO_REIMU]
     #     processed_urls = processed_urls[:MAXINFO_REIMU]
@@ -75,21 +93,33 @@ async def get_search_result(key_word: str) -> list or None:
     # return ret
 
 
-async def get_download_links(url) -> str:
+async def get_download_links(session: CommandSession, url: str) -> Optional[str]:
     ret = ""
-
     logger.info("Now starting get the {}".format(url))
-    html_data = requests.get(url)
-    html = etree.HTML(html_data.text)
+
+    try:
+        async with aiohttp.ClientSession() as client:
+            async with client.get(url, timeout=10, proxy=get_local_proxy()) as response:
+
+                if response.status != 200:
+                    logger.error("Cannot connect to https://blog.reimu.net/"
+                                 "Status: [%s]"%response.status)
+                    await session.send("无法连接到资源服务器")
+                    return None
+
+                r = await response.text()
+    except asyncio.TimeoutError:
+        logger.error("Connect to https://blog.reimu.net/ timeout. Please add '104.28.28.43 blog.reimu.net' in host file to access it.")
+        await session.send("请求超时")
+        return None
+
+    html = etree.HTML(r)
 
     pres = html.xpath('//div[@class="entry-content"]/pre/text()')
     a_texts = html.xpath('//div[@class="entry-content"]/pre//a/text()')
     a_hrefs = html.xpath('//div[@class="entry-content"]/pre//a/@href')
 
     if pres:
-        # while "" in pres:
-        #     pres.remove("")
-
         ret = pres[0].strip()
 
         if a_hrefs:
@@ -97,7 +127,7 @@ async def get_download_links(url) -> str:
                 a = "\n {}  {}  {} ".format(a_t_s, a_h_s, pres[i + 1].strip())
                 ret += a
     else:
-        logger.error("Failed to get download link from {}".format(url))
+        logger.warning("Failed to get download link from {}".format(url))
 
     return ret
 
