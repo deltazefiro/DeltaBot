@@ -364,6 +364,7 @@ def run(thread_lock: Lock) -> None:
         except Exception as e:
             logger.error('出错：{} 位置：{}'.format(str(e), traceback.format_exc()))
         else:
+            os.makedirs(get_relative_path('./data'), exist_ok=True)
             with open(get_relative_path('./data/cookies.pkl'), 'wb') as f:
                 pickle.dump([cookies, g_tk], f)
             logger.info("Succeeded in getting Qzone login token.")
