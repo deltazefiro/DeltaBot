@@ -15,31 +15,26 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 - [x] 自然语言对话
   - [x] 茉莉机器人API
   - [x] 腾讯AI开放平台API
-- [x] 简易群轰炸
-- [x] 时间管理助手
-- [x] 呼叫管理员 (修改自[Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot/blob/master/xunbot/plugins/call_admin))
-- [x] 重载所有插件 (软重启)
-- [x] 自动通过好友请求
-- [x] 使用说明
-- [x] 转换xml代码为卡片
-- [x] 使用陷阱网站获取ip
+- [x] 简易群轰炸 [plugins/boom]
+- [x] 时间管理助手 [plugins/time_planning]
+- [x] 呼叫管理员 (修改自[Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot/blob/master/xunbot/plugins/call_admin)) [plugins/call_admin]
+- [x] 重载插件 [plugins/reload]
+- [x] 自动通过好友请求 [plugins/request_process]
+- [x] 使用说明 [plugins/usage]
+- [x] 转换xml代码为卡片 [plugins/xml]
+- [x] 使用陷阱网站获取ip [plugins/get_ip]
   - [ ] 陷阱网站嵌入音乐xml卡片
-- [x] Qzone发说说
+- [x] Qzone(QQ空间)发说说 [plugins/qzone] [**需单独安装**]
   - [x] 公告
   - [x] 简易匿名墙
+  - [x] 模拟登录 (修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)) [plugins/qzone/sim_login]
   - [ ] 接入敏感词识别接口
   - [ ] 举报机制
   - [ ] 图片发送支持
 - [ ] 安装向导
-- [ ] 音乐xml
 - [ ] scp基金会猜标号小游戏
-- [ ] 子插件管理
-- [ ] 群管理
-  - [ ] 指令禁言
-  - [ ] 发布群公告
-  - [ ] 撤回成员消息
-  - [ ] 踢出不活跃群员
-  - [ ] 全局黑名单 
+
+
 
 
 ## Usage
@@ -81,6 +76,19 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
    **[请一定进入本项目所在目录启动项目，否则可能出现相对位置错误]**
 
    [go-cqhttp将自动被DeltaBot启动，请勿手动启动]
+   
+   
+   
+6. [Optional] 启用 'qzone' 插件
+
+   **[以下操作仅用于启用 Qzone 相关功能(匿名墙、公告等功能)，非必须步骤]**
+
+   **[实验性功能，已知Bug: 在出现验证码时一定概率登录空间失败]**
+
+   1. 安装 requirements.txt 中注释掉的Qzone相关依赖库
+   2. 安装 Chrome 浏览器
+   3. 下载与浏览器版本对应的 [ChromeDriver](https://chromedriver.chromium.org/)
+   4. 填写 *deltabot/config.py* 中的Qzone选填项
 
 
 

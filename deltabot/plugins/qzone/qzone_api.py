@@ -1,14 +1,15 @@
 import os
-from typing import Optional
+import pickle
 import threading
+from typing import Optional
 
 import aiohttp
-import pickle
 from loguru import logger
-from nonebot import CommandSession
+from nonebot import CommandSession, get_bot
 
 from . import sim_login
-from ... import config
+
+config = get_bot().config
 
 get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
 _login_thread_lock: Optional[threading.Lock] = None
@@ -35,7 +36,7 @@ async def _get_login_token(session: CommandSession, force: bool = False) -> Opti
                 cookies, g_tk = pickle.load(f)
             return cookies, g_tk
         except (FileNotFoundError, ValueError):
-            logger.warning("Qzone login token is not exist. Start simulate login to get it.")
+            logger.warning("Qzone login token is not exist. Start simulate-login to get it.")
             await session.send("空间登录令牌不存在，开始自动获取，请稍等片刻后再使用此功能！")
 
     if _login_thread_lock is None:
@@ -98,11 +99,11 @@ async def post_emotion(session: CommandSession, content: str) -> Optional[bool]:
 
             resp = str(await response.text())
             if not resp:
-                logger.error("Got an empty resp from Qzone. Please make sure uid&cookie is invalid.")
+                logger.error("Got an empty resp from Qzone.")
                 await session.send("未知错误，请等待管理员更新")
                 return False
             elif '4001' in resp:
-                logger.error("Qzone cookie expired! Please update it.")
+                logger.warning("Qzone cookie expired! Start simulate login to get cookie.")
                 await session.send("QQ空间cookie已过期! 已开始自动获取，请稍待片刻再使用此功能")
                 await _get_login_token(session, force=True)
                 return False

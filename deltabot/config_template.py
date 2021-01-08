@@ -47,9 +47,7 @@ WELCOME_MESSAGE = "Hello!欢迎使用DeltaBot~\n请使用'/help'查看功能列�
 EXPR_DONT_UNDERSTAND = (
     '您搁那说啥呢...',
     '啥玩意？',
-    '其实我不太明白你的意思……',
-    '您搁那滚键盘呢？',
-    '啥？'
+    '其实我不太明白你的意思……'
 )
 
 # NLP API type ('tencent' / 'itpk') 对话API平台
@@ -64,10 +62,10 @@ ITPK_API_KEY = ''
 ITPK_APT_SECRET = ''
 
 # =========== Qzone ===========
+# [仅在使用 Qzone 插件时需要填写以下项]
 
-# ChromeDriver executable path 用于模拟登录的ChromeDriver绝对位置 [尚不稳定]
+# ChromeDriver executable path 驱动器ChromeDriver的[绝对]位置
 CHROME_DRIVER_PATH = ''
-QZONE_COOKIE = ""
 
 # Timeout 模拟登录超时限制
 QZONE_SIM_LOGIN_TIMEOUT = 8
