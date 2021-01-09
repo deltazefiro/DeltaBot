@@ -48,7 +48,7 @@ async def run_cqhttp():
         logger.info("Set permissions successful. Sudo authority will not required on next running.")
 
     logger.info("Start go-cqhttp!")
-    cqhttp_process = subprocess.Popen(['cd cqhttp;./go-cqhttp'], shell=True)
+    cqhttp_process = subprocess.Popen(['cd cqhttp;./go-cqhttp faststart'], shell=True)
 
     #                                   stdout=subprocess.PIPE,
     #                                   stderr=subprocess.STDOUT)
