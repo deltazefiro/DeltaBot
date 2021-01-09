@@ -23,7 +23,8 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 - [x] 使用说明 [plugins/usage]
 - [x] 转换xml代码为卡片 [plugins/xml]
 - [x] 使用陷阱网站获取ip [plugins/get_ip]
-  - [ ] 陷阱网站嵌入音乐xml卡片
+  - [x] 陷阱网站嵌入音乐xml卡片
+  - [ ] 支持自定义陷阱歌曲
 - [x] Qzone(QQ空间)发说说 [plugins/qzone] [**需单独安装**]
   - [x] 公告
   - [x] 简易匿名墙
@@ -31,7 +32,8 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
   - [ ] 接入敏感词识别接口
   - [ ] 举报机制
   - [ ] 图片发送支持
-- [ ] 安装向导
+- [x] 接入「[一言](hitokoto.cn)」[plugins/hitokoto]
+- [x] 接入 [自动对对联](https://ai.binwang.me/couplet/) [plugins/couplet]
 - [ ] scp基金会猜标号小游戏
 
 
@@ -100,12 +102,13 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 ## Thanks
 
-感谢以下项目:
+感谢以下伟大的项目:
 
 - QQ协议端 [Mrs4s/go-cqhttp](https://github.com/Mrs4s/go-cqhttp)
 - 前端框架 [NoneBot](https://github.com/nonebot/nonebot)
 - 部分代码修改自 [Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot)
 - Qzone模拟登录修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)
+- 网易云 [@littlealone100](https://music.163.com/#/artist?id=12063182) 所创作的充满吸引力的作品「 [逍遥游](https://music.163.com/#/song?id=532522915) 」作为音乐陷阱的诱饵
 
 
 ## License
