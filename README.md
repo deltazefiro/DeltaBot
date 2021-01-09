@@ -4,7 +4,7 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 
 有些写着玩、没啥用的无聊功能
 
-***本项目目前处于开发阶段***
+***本项目为个人学习用项目!!!***
 
 [ [@sandboxdream](https://github.com/sandboxdream) 注意不要把敏感信息提交上来啊！]
 
@@ -22,7 +22,7 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 - [x] 自动通过好友请求 [plugins/request_process]
 - [x] 使用说明 [plugins/usage]
 - [x] 转换xml代码为卡片 [plugins/xml]
-- [x] 使用陷阱网站获取ip [plugins/get_ip]
+- [x] 使用陷阱网站获取他人ip&大致位置 [plugins/get_ip]
   - [x] 陷阱网站嵌入音乐xml卡片
   - [ ] 支持自定义陷阱歌曲
 - [x] Qzone(QQ空间)发说说 [plugins/qzone] [**需单独安装**]
