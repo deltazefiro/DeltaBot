@@ -61,6 +61,11 @@ TENCENT_APP_KEY = ''
 ITPK_API_KEY = ''
 ITPK_APT_SECRET = ''
 
+# =========== Hitokoto ===========
+
+# Hitokoto category 一言的句子类型，见 https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0
+HITOKOTO_CATEGORY = {'a', 'i'}
+
 # =========== Qzone ===========
 # [仅在使用 Qzone 插件时需要填写以下项]
 
