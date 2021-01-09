@@ -21,7 +21,6 @@ async def get_hitokoto(session: CommandSession):
                     return None
 
                 r = await response.json()
-                logger.error((url, r))
                 if r.get('hitokoto'):
                     return r['hitokoto'], r['from_who'], r['from']
                 else:
