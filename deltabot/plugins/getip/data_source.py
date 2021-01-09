@@ -41,7 +41,7 @@ async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.
                     logger.info("Generate trapURL successfully: %s" %([r['url'], key]))
                     return r['url'], key
                 elif r['code'] == 1 and r['msg'] == 'key已被使用':
-                    logger.warn("Key was occupied. Regenerate another.")
+                    logger.warning("Key was occupied. Regenerate another.")
                 else:
                     logger.error("Unknown response from api: %s" %r)
                     await session.send("陷阱api返回未知错误")
@@ -86,11 +86,11 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
                         logger.info("Get ip successfully: %s" % ([d['ip'], d['address']]))
                         return d['ip'], d['address']
                     else:
-                        logger.error(f"Trap '{key}' haven't been visited.")
+                        logger.warning(f"Trap '{key}' haven't been visited.")
                         await session.send("陷阱网站还没被访问！请等访问后再试")
                         return None
                 elif r['code'] == 1 and r['msg'] == 'key不存在,请去创建':
-                    logger.error(f"Key '{key}' is not exist.")
+                    logger.warning(f"Key '{key}' is not exist.")
                     await session.send("Key不存在！请先创建")
                 else:
                     logger.error("Unknown response from api: %s" %r)

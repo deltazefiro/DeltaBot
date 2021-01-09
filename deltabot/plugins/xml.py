@@ -1,4 +1,6 @@
-from nonebot import on_command, CommandSession, message
+from nonebot import on_command, CommandSession
+
+from ..utils import get_xml_segment
 
 __plugin_name__ = 'xml'
 __plugin_usage__ = r"""
@@ -8,13 +10,11 @@ Command(s):
  - /xml [xml代码]
 """.strip()
 
-def get_xml_segment(data: str) -> message.MessageSegment:
-    return message.MessageSegment(type_='xml', data={'data': str(data)})
-
 @on_command('xml', aliases=('toxml', 'to_xml'))
 async def xml(session: CommandSession):
     data = session.get('data', prompt="请输入xml代码")
     await session.send(get_xml_segment(data))
+    await session.send("卡片发送完成，若未收到可能为xml代码有误")
 
 @xml.args_parser
 async def _(session: CommandSession):
