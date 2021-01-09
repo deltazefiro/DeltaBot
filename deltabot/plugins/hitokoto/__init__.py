@@ -9,7 +9,7 @@ Command(s):
  - /hitokoto
 """.strip()
 
-@on_command('hitokoto', aliases=('每日一句'))
+@on_command('hitokoto', aliases=('每日一句', '一言', 'poem'))
 async def hitokoto(session: CommandSession):
     ret = await get_hitokoto(session)
     if ret:
