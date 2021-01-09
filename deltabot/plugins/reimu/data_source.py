@@ -1,11 +1,14 @@
 """Modified from https://github.com/Angel-Hair/XUN_Bot/"""
-from typing import Optional
-from urllib.request import getproxies
-from nonebot import CommandSession
-import aiohttp
 import asyncio
+from typing import Optional
+
+import aiohttp
 from loguru import logger
 from lxml import etree
+from nonebot import CommandSession
+
+from ...utils import get_local_proxy
+
 
 # MAXINFO_REIMU = 5
 #
@@ -23,11 +26,6 @@ from lxml import etree
 #
 #     return repass
 
-def get_local_proxy():
-    try:
-        return getproxies()['http']
-    except KeyError:
-        return None
 
 async def get_search_result(session: CommandSession, key_word: str) -> Optional[list]:
     try:
