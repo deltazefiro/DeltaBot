@@ -20,6 +20,7 @@ import cv2
 import numpy as np
 from PIL import Image
 from loguru import logger
+from nonebot import get_bot
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
 from selenium.webdriver.common.action_chains import ActionChains
@@ -27,17 +28,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from ... import config
-
+config = get_bot().config
 get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
 
 class QzoneSimLogin(object):
 
     timeout = config.QZONE_SIM_LOGIN_TIMEOUT
-    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36'
-
-    # 空间留言板地址
-    qzone_message_board_url = 'https://user.qzone.qq.com/proxy/domain/m.qzone.qq.com/cgi-bin/new/get_msgb'
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
 
     def __init__(self):
         self.options = webdriver.ChromeOptions()
@@ -249,13 +246,13 @@ class QzoneSimLogin(object):
             bg_img_width = bg_block.size['width']
             bg_img_x = bg_block.location['x']
             bg_img_url = bg_block.get_attribute('src')
-            print(bg_img_url)
+            # print(bg_img_url)
 
             # 滑块图
             slide_block = self.wait.until(EC.visibility_of_element_located((By.ID, 'slideBlock')))
             slide_block_x = slide_block.location['x']
             slide_img_url = slide_block.get_attribute('src')
-            print(slide_img_url)
+            # print(slide_img_url)
 
             # 小滑块
             drag_thumb = self.wait.until(EC.visibility_of_element_located((By.ID, 'tcaptcha_drag_thumb')))
