@@ -5,11 +5,12 @@ from aiocqhttp.message import escape
 
 from ...utils import get_xml_segment
 
-__plugin_name__ = 'getip'
+__plugin_name__ = 'getip(获取IP陷阱)'
 __plugin_usage__ = r"""
 使用音乐卡片陷阱获取他人ip
 陷阱后端由https://met.red/提供
 【目前陷阱音乐使用的歌曲暂时硬编码为「逍遥游 by littlealone100」，暂不支持自定义歌曲】
+
 Usage:
     1. 使用命令 '/gettrap' 生成一个含有陷阱的音乐卡片（同时生成一个key）
     2. 将陷阱音乐卡片【转发】给你想获取ip的用户

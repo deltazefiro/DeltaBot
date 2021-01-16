@@ -1,14 +1,28 @@
-from nonebot import on_command, CommandSession, command
+from nonebot import on_command, CommandSession, command, permission
 import nonebot
 import time
 import asyncio
 from loguru import logger
 from .._version import __version__
 
+__plugin_name__ = 'basic(基础控制)'
+__plugin_usage__ = r"""
+机器人基础控制插件
+
+Command(s):
+  - /ping
+    测试机器人存活性
+  - /kill
+    终止当前命令任务，用于处理卡死
+  - /log
+    发送信息到控制台
+    【需要管理员权限】
+  - /version
+    获取机器人版本信息
+""".strip()
+
 async def __get_formatted_time():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-
-
 
 @nonebot.on_websocket_connect
 async def on_setup(event):
@@ -40,7 +54,7 @@ async def ping(session: CommandSession):
 
 
 
-@on_command('log')
+@on_command('log', permission=permission.SUPERUSER)
 async def log(session: CommandSession):
     msg = session.get('msg', prompt="Please enter a log message.")
     logger.warning(f"User log received:\n\n\n{msg}\n\n")

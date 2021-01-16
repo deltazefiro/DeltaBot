@@ -5,6 +5,7 @@ __plugin_name__ = 'get_ip'
 __plugin_usage__ = r"""
 使用陷阱网站获取他人ip
 Trap provided by https://met.red/
+
 Usage:
     使用命令 '/gettrap' 生成一个陷阱网址（同时生成一个key），
     然后将陷阱网址发送给你想获取ip的用户,

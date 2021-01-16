@@ -1,11 +1,12 @@
 from nonebot import on_command, CommandSession, permission
 import math
 
-__plugin_name__ = '[A]boom'
+__plugin_name__ = '[A]boom(消息轰炸)'
 __plugin_usage__ = r"""
 EXPLOSION is ART!!!
-*Required admin permission*
-**过度使用可能触发风控**
+【需要管理员权限】
+【过度使用可能触发风控】
+
 Command(s):
  - /boom
 """.strip()

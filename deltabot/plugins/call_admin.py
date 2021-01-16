@@ -6,9 +6,10 @@ import nonebot
 from nonebot import on_command, CommandSession, helpers
 from loguru import logger
 
-__plugin_name__ = 'call_admin'
+__plugin_name__ = 'calladmin(致电管理员)'
 __plugin_usage__ = r"""
 发送消息给管理员
+
 Command(s):
  - /calladmin [消息]
 """.strip()
