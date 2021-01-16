@@ -1,10 +1,11 @@
 from nonebot import on_command, CommandSession
 from .data_source import get_hitokoto
 
-__plugin_name__ = 'hitokoto'
+__plugin_name__ = 'hitokoto(一言)'
 __plugin_usage__ = r"""
-获取「一言」(每日一句)
+获取「一言」(附庸风雅利器)
 数据来源 hitokoto.cn
+
 Command(s):
  - /hitokoto
 """.strip()
