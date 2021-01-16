@@ -12,12 +12,13 @@ couplet插件使用的API为「王斌给您对对联」(https://ai.binwang.me/co
 若有侵权，请联系开发者删除
 """
 
-__plugin_name__ = 'couplet'
+__plugin_name__ = 'couplet(对对联)'
 __plugin_usage__ = r"""
 神经网络自动对对联
 不支持繁体字和特殊符号，断句请用全角逗号分隔
 【本插件使用的API为「王斌给您对对联」(https://ai.binwang.me/couplet/) 通过抓包取得的[非公开]API】
 【因此请不要频繁调用，对服务器产生影响】
+
 Command(s):
  - /couplet [上联]
 """.strip()

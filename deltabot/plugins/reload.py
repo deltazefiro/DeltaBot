@@ -7,10 +7,11 @@ from nonebot import on_command, CommandSession, permission, get_bot
 
 from .. import config
 
-__plugin_name__ = '[A]reload'
+__plugin_name__ = '[A]reload(重载)'
 __plugin_usage__ = r"""
 重载配置文件和所有插件
 【需要管理员权限】
+
 Command(s):
  - /reload
 """.strip()

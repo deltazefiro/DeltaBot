@@ -15,17 +15,18 @@ if not os.path.exists(get_bot().config.CHROME_DRIVER_PATH):
     __enable__ = False
 
 
-__plugin_name__ = 'qzone'
+__plugin_name__ = 'qzone(空间匿名墙)'
 __plugin_usage__ = r"""
 将消息发送到机器人的空间动态
+
 Command(s):
     - /announce [内容]
-      在空间发布公告，需管理员权限
-      *Required admin permission*
+      在空间发布公告
+      【需管理员权限】
       
     - /anonymous [内容]
       在空间发布匿名内容【匿名墙】
-      **禁止发布敏感内容！**
+      【禁止发布违规内容！】
 """.strip()
 
 
@@ -69,7 +70,7 @@ async def anonymous_board(session: CommandSession):
               session.get('content', prompt="请输入发送的内容(使用'/kill'取消)") + \
               "\n=============================\n" \
               "以上内容由匿名用户发布，管理员对本动态不负任何责任\n" \
-              "如果其中包含敏感内容，请及时联系管理员"
+              "如果其中包含违规内容，请及时联系管理员"
     ret = await post_emotion(session, content)
     if ret:
         await session.send("发送成功！")

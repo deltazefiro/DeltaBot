@@ -4,7 +4,7 @@ from subprocess import PIPE, STDOUT, CalledProcessError
 from loguru import logger
 from nonebot import CommandSession, on_command, permission
 
-__plugin_name__ = '[E][A]update'
+__plugin_name__ = '[E][A]update (热更新)'
 __plugin_usage__ = r"""
 从Git上更新DeltaBot
 仅对使用克隆获取仓库有效

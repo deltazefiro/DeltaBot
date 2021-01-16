@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import threading
 
@@ -6,7 +7,13 @@ from loguru import logger
 from nonebot import on_startup
 
 from .. import config
-import re
+
+__plugin_name__ = '[I]run_cqhttp'
+__plugin_usage__ = r"""
+[Internal plugin]
+Configure and start go_cqhttp on setup.
+Please DO NOT call the plugin *manually*.
+""".strip()
 
 def _configure_cqhttp():
     with open('cqhttp/config_template.hjson', 'r') as f:

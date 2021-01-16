@@ -2,10 +2,11 @@ from nonebot import on_command, CommandSession
 
 from ..utils import get_xml_segment
 
-__plugin_name__ = 'xml'
+__plugin_name__ = 'xml(xml卡片转换)'
 __plugin_usage__ = r"""
 将xml代码转换为卡片
 **过度使用有封号风险！**
+
 Command(s):
  - /xml [xml代码]
 """.strip()
