@@ -30,7 +30,10 @@ def log_cqhttp(cqhttp_process):
     with cqhttp_process.stdout:
         for line in iter(cqhttp_process.stdout.readline, b''):  # b'\n'-separated lines
             l = line.decode('utf-8').strip()[22:]
-            r = re.search(r'\[.*]:', l).span()
+            match = re.search(r'\[.*]:', l)
+            if not match:
+                continue #防止多行信息报错
+            r = match.span()
             level, content = l[r[0]+1:r[1]-2], l[r[1]+1:]
             if level == 'INFO':
                 logger.info(content)
