@@ -1,14 +1,18 @@
-# DeltaBot
+![DeltaBot](https://raw.githubusercontent.com/233a344a455/ImageHost/master/deltabot.jpg)
+<div align="center">
 
-DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的的QQ机器人
+**DeltaBot** 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的没用的QQ机器人
 
 有些写着玩、没啥用的无聊功能
 
-***本项目为个人学习用项目!!!***
+**本项目为个人学习用项目!!!**
 
-[ [@sandboxdream](https://github.com/sandboxdream) 注意不要把敏感信息提交上来啊！]
+![License](https://img.shields.io/github/license/233a344a455/DeltaBot)
+![Release](https://img.shields.io/github/v/release/233a344a455/DeltaBot?include_prereleases)
+![Python Version](https://img.shields.io/badge/python-3.7+-ff69b4.svg)
+![NoneBot Version](https://img.shields.io/badge/nonebot-1.8.0+-red.svg)
 
-
+</div>
 
 ## Features / TODO list
 
@@ -111,9 +115,21 @@ DeltaBot 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-c
 - 网易云 [@littlealone100](https://music.163.com/#/artist?id=12063182) 所创作的充满吸引力的作品「 [逍遥游](https://music.163.com/#/song?id=532522915) 」作为音乐陷阱的诱饵
 
 
+
+
 ## License
 
 go-cqhttp下的文件 ([go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的可执行程序) 保持使用原 [AGPL-3.0 License](https://github.com/Mrs4s/go-cqhttp/blob/master/LICENSE) 许可
 
 项目中其余内容使用 MIT License
 
+
+
+<details>
+<summary>点击显示答案</summary>
+<pre>
+傻瓜
+asdfjadskjfasdf
+asdfsdf
+</pre>
+</details>
