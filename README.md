@@ -49,13 +49,15 @@
 
 1. 安装Python3.7+ **[注意必须Python版本必须>=3.7]**
 
-2. 克隆本项目
+2. 安装 [git-lfs](https://git-lfs.github.com/) ，并运行 `git lfs install`
+
+3. 克隆本项目
 
    ```bash
    git clone --depth=1 https://github.com/233a344a455/DeltaBot.git
    ```
 
-3. 安装依赖库
+4. 安装依赖库
 
    ```bash
    pip install -r requirements.txt
@@ -63,15 +65,15 @@
 
    
 
-4. 修改配置文件
+5. 修改配置文件
 
-   将配置信息填充入 *deltabot/config_template.py* 并将其重命名为 *config.py*
+   将配置信息填充入 `deltabot/config_template.py` 并将其重命名为 `config.py`
 
    [go-cqhttp的配置文件将自动使用DeltaBot的配置文件填充]
 
    
 
-5. 运行 DeltaBot
+6. 运行 DeltaBot
 
    在**本项目根目录**下运行命令：
 
@@ -82,25 +84,26 @@
    **[请一定进入本项目所在目录启动项目，否则可能出现相对位置错误]**
 
    [go-cqhttp将自动被DeltaBot启动，请勿手动启动]
+
    
-   
-   
-6. [Optional] 启用 'qzone' 插件
+
+7. [Optional] 启用 'qzone' 插件
 
    **[以下操作仅用于启用 Qzone 相关功能(匿名墙、公告等功能)，非必须步骤]**
 
    **[实验性功能，已知Bug: 在出现验证码时一定概率登录空间失败]**
 
-   1. 安装 requirements.txt 中注释掉的Qzone相关依赖库
+   1. 安装 `requirements.txt` 中注释掉的Qzone相关依赖库
    2. 安装 Chrome 浏览器
    3. 下载与浏览器版本对应的 [ChromeDriver](https://chromedriver.chromium.org/)
-   4. 填写 *deltabot/config.py* 中的Qzone选填项
+   4. 填写 `deltabot/config.py` 中的Qzone选填项
 
 
 
 ### Windows
 
-- 待补充
+- [v0.1.6-][master 分支] `deltabot/config.py` 中**关闭**自动设置&启动cqhttp，并[手动下载配置并运行go-cqhttp]((https://github.com/Mrs4s/go-cqhttp))
+- **[v0.1.7+][dev 分支] 同Linux使用方式（不稳定！）**
 
 
 
@@ -122,14 +125,3 @@
 go-cqhttp下的文件 ([go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的可执行程序) 保持使用原 [AGPL-3.0 License](https://github.com/Mrs4s/go-cqhttp/blob/master/LICENSE) 许可
 
 项目中其余内容使用 MIT License
-
-
-
-<details>
-<summary>点击显示答案</summary>
-<pre>
-傻瓜
-asdfjadskjfasdf
-asdfsdf
-</pre>
-</details>
