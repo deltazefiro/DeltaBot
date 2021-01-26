@@ -1,0 +1,2 @@
+/cqhttp/go-cqhttp.exe filter=lfs diff=lfs merge=lfs -text
+/cqhttp/go-cqhttp filter=lfs diff=lfs merge=lfs -text
