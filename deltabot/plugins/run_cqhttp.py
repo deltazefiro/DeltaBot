@@ -1,6 +1,7 @@
 import os
 import re
 import subprocess
+import sys
 import threading
 
 from loguru import logger
@@ -30,7 +31,10 @@ def log_cqhttp(cqhttp_process):
     with cqhttp_process.stdout:
         for line in iter(cqhttp_process.stdout.readline, b''):  # b'\n'-separated lines
             l = line.decode('utf-8').strip()[22:]
-            r = re.search(r'\[.*]:', l).span()
+            match = re.search(r'\[.*]:', l)
+            if not match:
+                continue #防止多行信息报错
+            r = match.span()
             level, content = l[r[0]+1:r[1]-2], l[r[1]+1:]
             if level == 'INFO':
                 logger.info(content)
@@ -52,18 +56,27 @@ async def run_cqhttp():
         logger.info("Generate go-cqhttp config successfully.")
 
     if not config.AUTO_START_GO_CQHTTP:
-        logger.warning("Auto-start go-cqhttp is disabled. Please start go-cqhttp manually on port.")
+        logger.warning(f"Auto-start go-cqhttp is disabled. Please run go-cqhttp manually on port {config.PORT}.")
         return
 
-    # Check is go-cqhttp executable
-    if not os.access('cqhttp/go-cqhttp', os.X_OK):
-        mode = os.stat('cqhttp/go-cqhttp').st_mode | 0o100
-        logger.warning("go-cqhttp is not executable! Sudo authority required to set permissions.")
-        os.chmod('cqhttp/go-cqhttp', mode)
-        logger.info("Set permissions successful. Sudo authority will not required on next running.")
+    if sys.platform == 'linux':
+        command = ['./go-cqhttp', 'faststart']
+
+        # Check is go-cqhttp executable
+        if not os.access('cqhttp/go-cqhttp', os.X_OK):
+            mode = os.stat('cqhttp/go-cqhttp').st_mode | 0o100
+            logger.warning("go-cqhttp is not executable! Sudo authority required to set permissions.")
+            os.chmod('cqhttp/go-cqhttp', mode)
+            logger.info("Set permissions successful. Sudo authority will not required on next running.")
+
+    elif sys.platform == 'win32':
+        command = ['./go-cqhttp.exe', 'faststart']
+    else:
+        logger.critical(f"Unsupported platform! Please run go-cqhttp manually on port {config.PORT}.")
+        return
 
     logger.info("Start go-cqhttp!")
-    cqhttp_process = subprocess.Popen(['cd cqhttp;./go-cqhttp faststart'], shell=True,
+    cqhttp_process = subprocess.Popen(command, cwd='cqhttp',
                                       stdout=subprocess.PIPE,
                                       stderr=subprocess.STDOUT)
 
