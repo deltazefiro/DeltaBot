@@ -16,7 +16,7 @@ async def get_hitokoto(session: CommandSession):
             async with client.get(url, timeout=10, proxy=get_local_proxy()) as response:
 
                 if response.status != 200:
-                    logger.error(f"Cannot connect to {url}, Status: {response.status}")
+                    logger.error(f"无法连接到  {url}, 错误状态: {response.status}")
                     await session.send("无法连接到服务器")
                     return None
 
@@ -24,9 +24,9 @@ async def get_hitokoto(session: CommandSession):
                 if r.get('hitokoto'):
                     return r['hitokoto'], r['from_who'], r['from']
                 else:
-                    logger.error(f"No result found in the category. Please make sure category is valid.")
+                    logger.error(f"在类中没有发现结果 请确认类是有效的")
                     await session.send("插件配置错误")
 
     except asyncio.TimeoutError:
-        logger.error(f"Cannot connect to {url}, Error: Timeout")
+        logger.error(f"无法连接到  {url}, 错误: 超时")
         await session.send("请求超时")

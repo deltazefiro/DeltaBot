@@ -365,4 +365,4 @@ def run(thread_lock: Lock) -> None:
             with open(get_relative_path('./data/cookies.pkl'), 'wb') as f:
                 pickle.dump([cookies, g_tk], f)
             logger.info("Succeeded in getting Qzone login token.")
-    logger.warning("Simulate Qzone login thread finished.")
+    logger.warning("模拟Qzone登录线程完成。")

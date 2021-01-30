@@ -29,7 +29,7 @@ async def get_trap(session: CommandSession):
         ret = await generate_trap_url(session)
 
     if ret:
-        await session.send("TrapURL & Key:")
+        await session.send("诱骗连接和获取秘钥分别为:")
         await session.send(ret[0])
         await session.send(ret[1])
 

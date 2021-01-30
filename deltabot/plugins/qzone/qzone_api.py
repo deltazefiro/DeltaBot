@@ -36,7 +36,7 @@ async def _get_login_token(session: CommandSession, force: bool = False) -> Opti
                 cookies, g_tk = pickle.load(f)
             return cookies, g_tk
         except (FileNotFoundError, ValueError):
-            logger.warning("Qzone login token is not exist. Start simulate-login to get it.")
+            logger.warning("空间登录令牌不存在，开始自动获取. Qzone login token is not exist. Start simulate-login to get it.")
             await session.send("空间登录令牌不存在，开始自动获取，请稍等片刻后再使用此功能！")
 
     if _login_thread_lock is None:
@@ -92,18 +92,18 @@ async def post_emotion(session: CommandSession, content: str) -> Optional[bool]:
         async with sess.post(url, headers=headers, data=data) as response:
 
             if response.status != 200:
-                logger.error("Cannot connect to Qzone, "
-                             "Status: [%s]"%response.status)
+                logger.error("无法连接到QQ空间Cannot connect to Qzone, "
+                             " 错误状态Status: [%s]"%response.status)
                 await session.send("无法连接到QQ空间，请稍后重试")
                 return False
 
             resp = str(await response.text())
             if not resp:
-                logger.error("Got an empty resp from Qzone.")
+                logger.error("qzone返回了空 Got an empty resp from Qzone.")
                 await session.send("未知错误，请等待管理员更新")
                 return False
             elif '4001' in resp:
-                logger.warning("Qzone cookie expired! Start simulate login to get cookie.")
+                logger.warning("QQ空间cookie已过期! 开始模拟登陆获取，Qzone cookie expired! Start simulate login to get cookie.")
                 await session.send("QQ空间cookie已过期! 已开始自动获取，请稍待片刻再使用此功能")
                 await _get_login_token(session, force=True)
                 return False

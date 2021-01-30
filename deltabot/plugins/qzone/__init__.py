@@ -7,11 +7,11 @@ __enable__ = True
 try:
     from .qzone_api import *
 except ImportError:
-    logger.warning("Qzone simulate-login dependencies not satisfied. Disabled 'qzone' plugin.")
+    logger.warning("Qzone模拟登录依赖不满足。禁用“qq空间”插件。 Qzone simulate-login dependencies not satisfied. Disabled 'qzone' plugin.")
     __enable__ = False
 
 if not os.path.exists(get_bot().config.CHROME_DRIVER_PATH):
-    logger.warning("Chrome Driver not found! Disabled 'qzone' plugin.")
+    logger.warning("Chrome驱动程序未找到!禁用“qq空间”插件。 Chrome Driver not found! Disabled 'qzone' plugin.")
     __enable__ = False
 
 
@@ -34,7 +34,7 @@ Command(s):
 async def announce(session: CommandSession):
 
     if not __enable__:
-        logger.warning("Dependencies are not satisfied. Plugin is disabled.")
+        logger.warning("依赖不足。插件被禁用。 Dependencies are not satisfied. Plugin is disabled.")
         await session.send("插件未启用！")
         return
 
@@ -61,7 +61,7 @@ async def _(session: CommandSession):
 async def anonymous_board(session: CommandSession):
 
     if not __enable__:
-        logger.warning("Dependencies are not satisfied / ChromeDriver not found. Plugin is disabled.")
+        logger.warning("不满足依赖/ ChromeDriver没有找到。插件被禁用。 Dependencies are not satisfied / ChromeDriver not found. Plugin is disabled.")
         await session.send("插件未启用！")
         return
 

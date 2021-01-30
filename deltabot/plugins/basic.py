@@ -30,7 +30,7 @@ async def on_setup(event):
     bot = nonebot.get_bot()
     await nonebot.helpers.send_to_superusers(nonebot.get_bot(), "DeltaBot has been started. Version: %s\n%s"
                                              %(__version__, await __get_formatted_time()))
-    logger.info("DeltaBot has been started. Version: %s" %__version__)
+    logger.info("DeltaBot 启动成功 启动版本为: %s" %__version__)
 
 
 
@@ -44,7 +44,7 @@ async def kill(session: CommandSession):
 @on_command('version', aliases=('ver'))
 async def kill(session: CommandSession):
     bot = nonebot.get_bot()
-    await session.send("DeltaBot Version: %s" %__version__)
+    await session.send("DeltaBot 版本: %s" %__version__)
 
 
 
@@ -57,8 +57,8 @@ async def ping(session: CommandSession):
 @on_command('log', permission=permission.SUPERUSER)
 async def log(session: CommandSession):
     msg = session.get('msg', prompt="Please enter a log message.")
-    logger.warning(f"User log received:\n\n\n{msg}\n\n")
-    await session.send("Send msg to log successfully.")
+    logger.warning(f"用户进行日志:\n\n\n{msg}\n\n")
+    await session.send("成功发送消息至日志。")
 
 @log.args_parser
 async def _(session: CommandSession):

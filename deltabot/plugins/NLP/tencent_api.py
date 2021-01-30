@@ -52,31 +52,31 @@ async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
         async with aiohttp.ClientSession() as sess:
             async with sess.post(url, data=data) as response:
 
-                logger.debug(f"Send data to api: {data}")
+                logger.debug(f"发送数据到接口: {data}")
 
                 if response.status != 200:
-                    logger.error(f"Cannot connect to {url}, Status: {response.status}")
+                    logger.error(f"无法连接到 {url}, 状态: {response.status}")
                     await session.send("对话api调用发生错误 :(")
                     return None
 
                 r = json.loads(await response.text())
-                logger.debug(f"Response from API: {r}")
+                logger.debug(f"接口返回为: {r}")
 
                 if not r['ret']:
                     return r['data']['answer']
                 elif r['msg'] == 'chat answer not found':
-                    logger.debug("Chat answer not found. Render not understanding instead.")
+                    logger.debug("没有找到答案，使用不理解的回答")
                     return render_expression(config.EXPR_DONT_UNDERSTAND)
                 elif r['msg'] == 'app_id not found' or r['msg'] == 'app_key not found':
-                    logger.warning("API config invalid / unfilled. Please fill them in config.py to enable NL conversation function.")
+                    logger.warning("对话接口错误 / 空缺。请在config.py中填写以启用自然语言处理人工智能分支会话功能")
                     await session.send("对话api配置错误！请联系管理员")
                     return None
                 else:
-                    logger.error(f"Error response from API: {r['msg']}")
+                    logger.error(f"接口返回的错误的信息: {r['msg']}")
                     await session.send("对话api调用发生错误 :(")
                     return None
 
     except (aiohttp.ClientError, json.JSONDecodeError, KeyError) as e:
-        logger.error(f"An error occupied when calling api: {e}")
+        logger.error(f"调用接口时被占用 : {e}")#An error occupied when calling api
         await session.send("对话api调用发生错误 :(")
         return None

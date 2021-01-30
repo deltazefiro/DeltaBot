@@ -72,8 +72,8 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
         async with sess.post(url, data=data) as response:
 
             if response.status != 200:
-                logger.error("Cannot connect to 'https://met.red/api/h/location/getKeyIpList', "
-                             "Status: [%s]"%response.status)
+                logger.error("无法连接至 'https://met.red/api/h/location/getKeyIpList', "
+                             "状态为: [%s]"%response.status)
                 await session.send("无法连接到陷阱api")
                 return None
 
@@ -86,16 +86,16 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
                         logger.info("Get ip successfully: %s" % ([d['ip'], d['address']]))
                         return d['ip'], d['address']
                     else:
-                        logger.error(f"Trap '{key}' haven't been visited.")
+                        logger.error(f"陷阱 '{key}' 还没有被访问")
                         await session.send("陷阱网站还没被访问！请等访问后再试")
                         return None
                 elif r['code'] == 1 and r['msg'] == 'key不存在,请去创建':
-                    logger.error(f"Key '{key}' is not exist.")
+                    logger.error(f"陷阱 '{key}' 不存在")
                     await session.send("Key不存在！请先创建")
                 else:
-                    logger.error("Unknown response from api: %s" %r)
+                    logger.error("从陷阱接口接受到未知错误 %s" %r)
                     await session.send("陷阱api返回未知错误")
             except (KeyError, IndexError):
-                logger.error("Unknown response from api: %s" %r)
+                logger.error("从陷阱接口接受到未知错误 %s" %r)
                 await session.send("陷阱api返回未知错误")
                 return None

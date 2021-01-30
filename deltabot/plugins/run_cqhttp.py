@@ -53,10 +53,10 @@ async def run_cqhttp():
 
     if config.AUTO_CONFIGURE_GO_CQHTTP:
         _configure_cqhttp()
-        logger.info("Generate go-cqhttp config successfully.")
+        logger.info("生成go-cqhttp配置成功。")
 
     if not config.AUTO_START_GO_CQHTTP:
-        logger.warning(f"Auto-start go-cqhttp is disabled. Please run go-cqhttp manually on port {config.PORT}.")
+        logger.warning(f"禁用了go-cqhttp的自动启动。请在 {config.PORT} 端口上手动运行go-cqhttp.")
         return
 
     if sys.platform == 'linux':
@@ -65,17 +65,17 @@ async def run_cqhttp():
         # Check is go-cqhttp executable
         if not os.access('cqhttp/go-cqhttp', os.X_OK):
             mode = os.stat('cqhttp/go-cqhttp').st_mode | 0o100
-            logger.warning("go-cqhttp is not executable! Sudo authority required to set permissions.")
+            logger.warning("go-cqhttp不可执行!设置权限所需的Sudo权限。go-cqhttp is not executable! Sudo authority required to set permissions.")
             os.chmod('cqhttp/go-cqhttp', mode)
-            logger.info("Set permissions successful. Sudo authority will not required on next running.")
+            logger.info("设置权限成功。Sudo权限将不需要在下一次运行。Set permissions successful. Sudo authority will not required on next running.")
 
     elif sys.platform == 'win32':
         command = ['./go-cqhttp.exe', 'faststart']
     else:
-        logger.critical(f"Unsupported platform! Please run go-cqhttp manually on port {config.PORT}.")
+        logger.critical(f"不受支持的平台!请在 {config.PORT}端口上手动运行go-cqhttp.")
         return
 
-    logger.info("Start go-cqhttp!")
+    logger.info("启动go-cqhttp!")
     cqhttp_process = subprocess.Popen(command, cwd='cqhttp',
                                       stdout=subprocess.PIPE,
                                       stderr=subprocess.STDOUT)

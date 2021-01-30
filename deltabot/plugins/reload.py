@@ -20,7 +20,7 @@ Command(s):
 async def reloadplugins(session: CommandSession):
     # Reload config
     get_bot().config = config
-    logger.info("Config reloaded.")
+    logger.info("配置文件已重载")
 
     # Reload plugins
     plugins = nonebot.plugin.get_loaded_plugins()
@@ -32,6 +32,6 @@ async def reloadplugins(session: CommandSession):
             del sys.modules[module]
 
     reloaded_plugins = nonebot.load_plugins(path.dirname(__file__), 'deltabot.plugins')
-    logger.info(f"{len(reloaded_plugins)} plugin(s) reloaded.")
+    logger.info(f"{已重载以下插件(reloaded_plugins)} ")
     await session.send(f"已成功重载{len(reloaded_plugins)}个插件")
 

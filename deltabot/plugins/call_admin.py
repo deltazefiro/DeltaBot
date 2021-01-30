@@ -21,14 +21,14 @@ async def call_admin(session: CommandSession):
     user_id = session.event['user_id']
 
     info = session.get('info', prompt='请输入要发送的消息')
-    logger.info("Get Information: {} from ID: {}".format(info, user_id))
+    logger.info("收到信息 {} 由以下用户发出: {}".format(info, user_id))
 
     sender_info = "\n\n——@{}({}) | {}".format(session.event['sender']['nickname'], user_id,
                                             time.strftime("%Y-%m-%d", time.localtime(session.event['time'])))
 
     await helpers.send_to_superusers(nonebot.get_bot(), message=("Message received:\n\n   " + info + sender_info))
     await session.send("消息发送成功 :)")
-    logger.info("Send message to admin successfully")
+    logger.info("成功发送消息至管理员")
 
 
 

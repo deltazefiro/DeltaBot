@@ -19,8 +19,8 @@ async def update(session: CommandSession):
         await session.send("已取消")
         return
 
-    logger.warning("Start pulling from git ...")
-    await session.send("Start pulling from git ...")
+    logger.warning("开始从git拉取...")
+    await session.send("开始从git拉取 ...")
     try:
         output = subprocess.run(['git', 'pull'], stdout=PIPE, stderr=STDOUT).stdout.decode('utf-8').strip()
         logger.info(output)
@@ -28,5 +28,5 @@ async def update(session: CommandSession):
         await session.send(msg.strip())
 
     except CalledProcessError as e:
-        logger.error(f"Fail to update: {e}")
-        await session.send(f"Fail to update: {e}")
+        logger.error(f"更新失败: {e}")
+        await session.send(f"更新失败: {e}")

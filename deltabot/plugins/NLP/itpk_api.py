@@ -34,6 +34,6 @@ async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
                     return resp_text
 
     except (aiohttp.ClientError, json.JSONDecodeError, KeyError) as e:
-        logger.error(f"An error occupied when calling api: {e}")
+        logger.error(f"在连接接口时发现错误: {e}")
         await session.send("对话api调用发生错误 :(")
         return None

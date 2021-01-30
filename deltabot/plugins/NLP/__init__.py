@@ -26,7 +26,7 @@ async def NLP(session: CommandSession):
     elif api == 'itpk':
         reply = await itpk_api.call_NLP_api(session, message)
     else:
-        logger.warning("Invalid NLP api type. Please config them in config.py to enable NL conversation function.")
+        logger.warning("无效的 自然语言处理人工智能分支 应用程序接口 类型。请在config.py中配置以启用自然语言处理人工智能分支会话功能。")
         reply = "闲聊对话功能未启用，请使用'/help'查看可用命令"
 
     if reply:

@@ -17,12 +17,12 @@ async def call_api(session: CommandSession, text: str) -> Optional[str]:
             async with client.get(url, timeout=10, proxy=get_local_proxy()) as response:
 
                 if response.status != 200:
-                    logger.error(f"Cannot connect to {url}, Status: {response.status}")
+                    logger.error(f"无法连接到服务器 {url}, 状态为: {response.status}")
                     await session.send("无法连接到服务器")
                     return None
 
                 return (await response.json())['output']
 
     except asyncio.TimeoutError:
-        logger.error(f"Cannot connect to {url}, Error: Timeout")
+        logger.error(f"无法连接到 {url}, 错误:超时")
         await session.send("请求超时")
