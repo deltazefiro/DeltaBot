@@ -39,7 +39,14 @@
 - [x] 接入「[一言](hitokoto.cn)」[plugins/hitokoto]
 - [x] 接入 [自动对对联](https://ai.binwang.me/couplet/) [plugins/couplet]
 - [ ] scp基金会猜标号小游戏
-
+- [ ] 群管理
+  - [ ] 自动审核进群
+  - [ ] 刷屏禁言
+  - [ ] 关键字识别禁言
+  - [ ] 刷屏禁言
+  - [ ] 处罚机制
+    - [ ] 全局黑名单
+  - [ ] 潜水清人
 
 
 

@@ -11,9 +11,9 @@ from .. import config
 
 __plugin_name__ = '[I]run_cqhttp'
 __plugin_usage__ = r"""
-[Internal plugin]
-Configure and start go_cqhttp on setup.
-Please DO NOT call the plugin *manually*.
+[内部插件]
+在安装时配置并启动go_cqhttp。
+请不要手动调用插件。
 """.strip()
 
 def _configure_cqhttp():
