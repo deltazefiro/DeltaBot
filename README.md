@@ -46,13 +46,15 @@
 
 1. 安装Python3.7+ **[注意必须Python版本必须>=3.7]**
 
-3. 克隆本项目
+2. 克隆本项目
 
    ```bash
    git clone --depth=1 https://github.com/233a344a455/DeltaBot.git
    ```
 
-4. 安装依赖库
+   
+
+3. 安装依赖库
 
    ```bash
    pip install -r requirements.txt
@@ -60,27 +62,26 @@
 
    
 
-5. 修改配置文件
+4. 修改配置文件
 
-   将配置信息填充入 `deltabot/config_template.py` 并将其重命名为 `config.py`
-
+   将配置信息填充入 `deltabot/config_template.py` 并将其重命名为 `config.py`  
    [go-cqhttp的配置文件将自动使用DeltaBot的配置文件填充]
 
    
 
-7. [Optional] 启用 'qzone' 插件
+5. [Optional] 启用 'qzone' 插件
 
-   **[以下操作仅用于启用 Qzone 相关功能(匿名墙、公告等功能)，非必须步骤]**
-
+   **[以下操作仅用于启用 Qzone 相关功能(匿名墙、公告等功能)，非必须步骤]**  
    **[实验性功能，已知Bug: 在出现验证码时一定概率登录空间失败]**
 
    1. 安装 `requirements.txt` 中注释掉的Qzone相关依赖库
+
    2. 安装 Chrome 浏览器
    3. 下载与浏览器版本对应的 [ChromeDriver](https://chromedriver.chromium.org/)
    4. 填写 `deltabot/config.py` 中的Qzone选填项
+
    
-   
-   
+
 6. 运行 DeltaBot
 
    在**本项目根目录**下运行命令：
@@ -89,21 +90,17 @@
    python3 start.py
    ```
 
-   **[请一定进入本项目所在目录启动项目，否则可能出现相对位置错误]**
-
-   首次运行时会自动从 GithubRelease 下载并配置协议端 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) , **请确保设备能够连接到Github**
-
+   **[请一定进入本项目所在目录启动项目，否则可能出现相对位置错误]**  
+   首次运行时会自动从 GithubRelease 下载并配置协议端 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) , **请确保设备能够连接到Github**  
    若下载不成功，可以从[这里](https://github.com/Mrs4s/go-cqhttp/releases)手动下载对应平台的可执行文件并将其放入 `cqhttp/`
 
-    
    
-Go-cqhttp的自动下载、配置与运行暂时仅支持linux-amd64与windows-amd64平台，
-   
-   其它平台请手动获取配置运行go-cqhttp，
-   
+
+   Go-cqhttp的自动下载、配置与运行暂时仅支持linux-amd64与windows-amd64平台，  
+   其它平台请手动获取配置运行go-cqhttp，  
    并将`config.py`中的`go-cqhttp`分类下所有以`AUTO_`开头的选项为False
 
-
+   
 
 ## Thanks
 
