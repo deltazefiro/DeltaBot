@@ -33,7 +33,7 @@ logger.add(sys.stdout,
            colorize=True,
            format="<g>{time:YYYY-MM-DD HH:mm:ss}</g> <level>| {level} |</level> <c>{name}</c>:<c>{function}</c> - <level>{message}</level>")
 
-logger.add('bot_log.log', rotation='10 MB',
+logger.add('logfile.log', rotation='10 MB',
            filter='deltabot',
            level='INFO',
            colorize=False,

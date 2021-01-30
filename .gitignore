@@ -140,7 +140,6 @@ test/
 
 # Security
 /cqhttp/
-!/cqhttp/go-cqhttp
 !/cqhttp/config_template.hjson
 data/
 !.gitkeep
