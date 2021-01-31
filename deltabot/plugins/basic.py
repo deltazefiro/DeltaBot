@@ -48,7 +48,7 @@ async def kill(session: CommandSession):
 
 
 
-@on_command('ping', aliases=('test', 'Test'))
+@on_command('ping')
 async def ping(session: CommandSession):
     await session.send("Pong! %s" %(await __get_formatted_time()))
 

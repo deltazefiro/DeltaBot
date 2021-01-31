@@ -25,6 +25,7 @@ async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.
     key = ''.join(random.choice(letters) for _ in range(10))
     data = {'key': key, 'jumpUrl': jump_url, 'token': ''}
 
+    logger.debug(f"Start posting {data} to {url} ...")
     async with aiohttp.ClientSession() as sess:
         async with sess.post(url, data=data) as response:
 
@@ -35,6 +36,7 @@ async def generate_trap_url(session: CommandSession, jump_url: str = 'www.baidu.
                 return None
 
             r = json.loads(await response.text())
+            logger.debug(f"Response: {r}")
 
             try:
                 if r['code'] == 0:
@@ -68,6 +70,7 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
     url = "https://met.red/api/h/location/getKeyIpList"
     data = {'key': key}
 
+    logger.debug(f"Start posting {data} to {url} ...")
     async with aiohttp.ClientSession() as sess:
         async with sess.post(url, data=data) as response:
 
@@ -78,6 +81,7 @@ async def get_ip_from_trap(session: CommandSession, key: str) -> (Optional[str],
                 return None
 
             r = json.loads(await response.text())
+            logger.debug(f"Response: {r}")
 
             try:
                 if r['code'] == 0:

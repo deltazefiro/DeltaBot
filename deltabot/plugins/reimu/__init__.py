@@ -18,7 +18,8 @@ __plugin_usage__ = r"""
 若不清楚此模块的作用，请输入'/kill'结束命令进程
 
 Command(s):
- - /reimu [搜索关键词]
+ - /reimu [keyword]
+   [keyword]: 搜索关键词，若为 'latest' 或 'l' 则获取最新发布的帖子列表
 """.strip()
 
 
@@ -31,6 +32,7 @@ async def reimu(session: CommandSession):
     key_word = await session.aget('key_word', prompt='请输入搜索关键词', arg_filters=[handle_cancellation(session)])
     await session.send("正在搜索，请稍后......")
     search_result = await get_search_result(session, key_word)
+    logger.debug(f"Search result: {search_result}")
 
     if search_result:
         msg = "找到 %d 结果: \n" %len(search_result)

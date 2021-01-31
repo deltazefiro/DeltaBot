@@ -46,7 +46,7 @@ DEBUG = False
 WELCOME_MESSAGE = "Hello!欢迎使用DeltaBot~\n请使用'/help'查看功能列表"
 
 # 管理员账号
-SUPERUSERS = {1234567}
+SUPERUSERS = {}
 
 # =========== NLP Process API ===========
 
@@ -57,20 +57,22 @@ EXPR_DONT_UNDERSTAND = (
     '其实我不太明白你的意思……'
 )
 
-# 对话API平台选择 ('tencent' / 'itpk')
+# 对话API平台选择 ('tencent' / 'itpk' / '')
+# 若为 '' 则不启用对话功能
 NLP_API = 'itpk'
 
-# 腾讯AI开发平台(https://ai.qq.com/)对话API
+# [可选]腾讯AI开发平台(https://ai.qq.com/)对话API
 TENCENT_APP_ID = ''
 TENCENT_APP_KEY = ''
 
-# 茉莉机器人(http://www.itpk.cn/)对话API [不填也可调用]
+# [可选]茉莉机器人(http://www.itpk.cn/)对话API [不填也可调用]
 ITPK_API_KEY = ''
 ITPK_APT_SECRET = ''
 
 # =========== Hitokoto ===========
 
 # 一言的句子类型，见 https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0
+# 若要启用所有类型，可不填
 HITOKOTO_CATEGORY = {'a', 'i'}
 
 # =========== Qzone ===========
@@ -81,3 +83,13 @@ CHROME_DRIVER_PATH = ''
 
 # 模拟登录超时限制
 QZONE_SIM_LOGIN_TIMEOUT = 8
+
+# 是否调用 百度AI开发平台 进行的非法信息审核
+CHECK_ILLEGAL_INFO = False
+
+# [可选]百度AI开发平台的 API Key & Secret Key
+# 参见 https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjgn3
+# [创建应用时必须勾选接口 '内容审核平台-文本' 才可使用]
+# 可以在 https://ai.baidu.com/censoring#/strategylist 配置审核策略
+BAIDU_API_KEY = ''
+BAIDU_SECRET_KEY = ''
