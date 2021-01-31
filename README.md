@@ -21,7 +21,7 @@
   - [x] 腾讯AI开放平台API
 - [x] 简易群轰炸 [plugins/boom]
 - [x] 时间管理助手 [plugins/time_planning]
-- [x] 呼叫管理员 (修改自[Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot/blob/master/xunbot/plugins/call_admin)) [plugins/call_admin]
+- [x] 呼叫管理员 (修改自[Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot/blob/master/xunbot/plugins/call_admin)) [plugins/test]
 - [x] 重载插件 [plugins/reload]
 - [x] 自动通过好友请求 [plugins/request_process]
 - [x] 使用说明 [plugins/usage]
@@ -33,7 +33,7 @@
   - [x] 公告
   - [x] 简易匿名墙
   - [x] 模拟登录 (修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)) [plugins/qzone/sim_login]
-  - [ ] 接入敏感词识别接口
+  - [x] 接入敏感词识别接口
   - [ ] 举报机制
   - [ ] 图片发送支持
 - [x] 接入「[一言](hitokoto.cn)」[plugins/hitokoto]

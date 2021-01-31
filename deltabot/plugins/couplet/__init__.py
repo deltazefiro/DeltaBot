@@ -29,7 +29,7 @@ async def couplet(session: CommandSession):
                                 arg_filters=[
                                     handle_cancellation(session),
                                     extract_text,
-                                    fit_size(max_length=15, message="您输入的上联太长了！请重新输入")
+                                    fit_size(max_length=20, message="您输入的上联太长了！请重新输入")
                                 ])
     output_couplet = await call_api(session, input_couplet)
 
