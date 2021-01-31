@@ -12,6 +12,7 @@ async def get_hitokoto(session: CommandSession):
     url = f"https://v1.hitokoto.cn/?c={'&c='.join(category)}"
 
     try:
+        logger.debug(f"Start getting {url} ...")
         async with aiohttp.ClientSession() as client:
             async with client.get(url, timeout=10, proxy=get_local_proxy()) as response:
 
@@ -21,6 +22,7 @@ async def get_hitokoto(session: CommandSession):
                     return None
 
                 r = await response.json()
+                logger.debug(f"Response: {r}")
                 if r.get('hitokoto'):
                     return r['hitokoto'], r['from_who'], r['from']
                 else:

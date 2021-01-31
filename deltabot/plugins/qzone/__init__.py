@@ -1,5 +1,6 @@
 from loguru import logger
 from nonebot import on_command, CommandSession, permission, get_bot
+from .check_content import *
 import os
 
 # Check dependencies
@@ -65,12 +66,19 @@ async def anonymous_board(session: CommandSession):
         await session.send("插件未启用！")
         return
 
+    c = session.get('content', prompt="请输入发送的内容(使用'/kill'取消)")
+
+    if get_bot().config.CHECK_ILLEGAL_INFO:
+        if not await check_content(session, c):
+            return
+
     content = "【匿名内容】\n" \
-              "=============================\n" + \
-              session.get('content', prompt="请输入发送的内容(使用'/kill'取消)") + \
+              "=============================\n" +\
+              c +\
               "\n=============================\n" \
               "以上内容由匿名用户发布，管理员对本动态不负任何责任\n" \
               "如果其中包含违规内容，请及时联系管理员"
+
     ret = await post_emotion(session, content)
     if ret:
         await session.send("发送成功！")
