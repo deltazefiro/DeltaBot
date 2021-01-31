@@ -16,6 +16,10 @@ import traceback
 from threading import Lock
 from urllib.request import urlretrieve
 
+import asyncio
+from nonebot.helpers import send_to_superusers
+from nonebot import get_bot
+
 import cv2
 import numpy as np
 from PIL import Image
@@ -344,6 +348,7 @@ def run(thread_lock: Lock) -> None:
         None
     """
     logger.warning("Simulate Qzone login thread started!")
+    asyncio.run(send_to_superusers(get_bot(), "检测到Qzone令牌无效！开始重新获取..."))
     with thread_lock:
         s = QzoneSimLogin()
         try:
@@ -365,4 +370,7 @@ def run(thread_lock: Lock) -> None:
             with open(get_relative_path('./data/cookies.pkl'), 'wb') as f:
                 pickle.dump([cookies, g_tk], f)
             logger.info("Succeeded in getting Qzone login token.")
-    logger.warning("Simulate Qzone login thread finished.")
+            asyncio.run(send_to_superusers(get_bot(), "Qzone令牌获取成功！"))
+            return
+        logger.warning("Simulate Qzone login thread finished with exception.")
+        asyncio.run(send_to_superusers(get_bot(), "Qzone令牌获取失败！请尝试重新获取/查看后台"))
