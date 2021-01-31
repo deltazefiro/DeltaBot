@@ -7,6 +7,10 @@
 
 **本项目为个人学习用项目!!!**
 
+qq机器人demo:2240701293
+
+自动通过好友请求
+
 ![License](https://img.shields.io/github/license/233a344a455/DeltaBot)
 ![Release](https://img.shields.io/github/v/release/233a344a455/DeltaBot?include_prereleases)
 ![Python Version](https://img.shields.io/badge/python-3.7+-ff69b4.svg)
@@ -111,7 +115,6 @@
 - 部分代码修改自 [Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot)
 - Qzone模拟登录修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)
 - 网易云 [@littlealone100](https://music.163.com/#/artist?id=12063182) 所创作的充满吸引力的作品「 [逍遥游](https://music.163.com/#/song?id=532522915) 」作为音乐陷阱的诱饵
-
 
 
 
