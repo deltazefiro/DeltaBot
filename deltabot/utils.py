@@ -1,5 +1,7 @@
 from typing import Optional
 
+# get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
+
 def get_local_proxy():
     from urllib.request import getproxies
     try:
