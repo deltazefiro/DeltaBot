@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 # get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
 
 def get_local_proxy():
@@ -15,28 +16,42 @@ def get_xml_segment(data: str):
     return message.MessageSegment(type_='xml', data={'data': str(data)})
 
 
+def get_cardimage_segment(file: str, maxheight: int = 500, maxwidth: int = 500, minheight: int = 40,
+                          minwidth: int = 40, source: str = None):
+    from nonebot import message
+    if source:
+        return message.MessageSegment(type_='cardimage',
+                                      data={'file': file, 'maxheight': maxheight, 'maxwidth': maxwidth,
+                                            'minheight': minheight, 'minwidth': minwidth,
+                                            'source': source})
+    else:
+        return message.MessageSegment(type_='cardimage',
+                                      data={'file': file, 'maxheight': maxheight, 'maxwidth': maxwidth,
+                                            'minheight': minheight, 'minwidth': minwidth})
+
+
 def download_file(url: str, download_path: str):
     import requests, sys, os
-    with open(download_path+'.downloading', 'wb') as f:
+    with open(download_path + '.downloading', 'wb') as f:
         response = requests.get(url, stream=True)
         total = int(response.headers.get('content-length'))
 
         downloaded = 0
 
-        for data in response.iter_content(chunk_size=1024*10):
+        for data in response.iter_content(chunk_size=1024 * 10):
             downloaded += len(data)
             f.write(data)
 
             done = int(30 * downloaded / total)
-            sys.stdout.write("\rDownloading %.2fM / %.2fM " %(downloaded/1024**2, total/1024**2)+\
+            sys.stdout.write("\rDownloading %.2fM / %.2fM " % (downloaded / 1024 ** 2, total / 1024 ** 2) + \
                              f"[{'█' * done}{'.' * (30 - done)}]")
             sys.stdout.flush()
 
     sys.stdout.write('\n')
-    os.rename(download_path+'.downloading', download_path)
+    os.rename(download_path + '.downloading', download_path)
 
 
-async def simple_post(session, url: str, data: dict, timeout:int=10) -> Optional[dict]:
+async def simple_post(session, url: str, data: dict, timeout: int = 10) -> Optional[dict]:
     """
     A simple post function with exception feedback
     Args:
@@ -73,7 +88,9 @@ async def simple_post(session, url: str, data: dict, timeout:int=10) -> Optional
 
 
 _baidu_ai_token = None
-async def get_baidu_ai_token(session, force:bool=False) -> Optional[str]:
+
+
+async def get_baidu_ai_token(session, force: bool = False) -> Optional[str]:
     """
     Get BaiduAI token.
     Args:
@@ -95,7 +112,8 @@ async def get_baidu_ai_token(session, force:bool=False) -> Optional[str]:
     config = get_bot().config
     ak, sk = config.BAIDU_API_KEY, config.BAIDU_SECRET_KEY
     if not (ak and sk):
-        logger.error("BAIDU_API_KEY / BAIDU_SECRET_KEY unfilled! Please fill them in config to enable illegal-info check.")
+        logger.error(
+            "BAIDU_API_KEY / BAIDU_SECRET_KEY unfilled! Please fill them in config to enable illegal-info check.")
         session.send("功能未启用！")
         return
     d = {'grant_type': 'client_credentials', 'client_id': ak, 'client_secret': sk}
