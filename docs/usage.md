@@ -42,3 +42,45 @@ sidebarDepth: 2
 ![](https://raw.githubusercontent.com/sandboxdream/figurebed/master/20210203132112.png)
 ![](https://raw.githubusercontent.com/sandboxdream/figurebed/master/20210203132135.png)
 
+## boom(消息轰炸)
+直接进行刷屏，请小心群管、群主。
+
+多次调用可能被sbtx风控
+
+抱歉没有图片
+:::tip NOTE
+此功能需要机器人的superuesr权限
+:::
+
+## calladmin(给管理员发送消息)
+用于给管理员(superuesr)发送消息
+
+发送的消息包括消息内容、消息发送者、发送时间
+
+![](https://raw.githubusercontent.com/sandboxdream/figurebed/master/20210203145245.png)
+
+## couplet(对对联)
+
+你出上联，机器人会自动对出下联
+
+如发送`couplet 特朗普支持者闯入国会`机器人的回复是
+```
+上联:「特朗普支持者闯入国会」
+下联:「全民同庆和谐促进繁荣」
+```
+![](https://raw.githubusercontent.com/sandboxdream/figurebed/master/20210203150531.png)
+
+::: warning
+本插件使用的API为[「王斌给您对对联」](https://ai.binwang.me/couplet/) 通过抓包取得的[非公开]API
+因此请不要频繁调用，以免对服务器产生影响
+:::
+
+## gomoku  (五子棋)
+
+来和ai搓一把五子棋吧
+
+有图片互动的那种
+
+
+
+![](https://raw.githubusercontent.com/sandboxdream/figurebed/master/20210203151323.png)
