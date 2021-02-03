@@ -20,7 +20,7 @@ module.exports = {
 
     // 假如文档不是放在仓库的根目录下：
     docsDir: 'docs',
-    docsBranch: 'master',
+    docsBranch: 'dev',
     editLinks: true,
   }
 }
