@@ -42,7 +42,7 @@ async def gomoku(session: CommandSession):
     await session.send(MessageSegment.image(g.get_img()))
     await asyncio.sleep(0.5)
     while True:
-        inp = await session.aget('input', force_update=True, prompt="请玩家落子",
+        inp = await session.aget('input', force_update=True, prompt="请玩家落子(发送'取消'以退出)",
                                  arg_filters=[not_empty(message="输入不能为空！请重新落子"),
                                               handle_cancellation(session),
                                               match_regex(r'[a-oA-O](1[0-5]|[1-9])', fullmatch=True,
