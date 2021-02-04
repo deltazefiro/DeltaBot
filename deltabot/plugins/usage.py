@@ -17,11 +17,14 @@ Command(s):
 async def usage(session: CommandSession):
     plugins = list(filter(lambda p: p.name, get_loaded_plugins()))
 
+    is_admin = session.event['user_id'] in session.bot.config.SUPERUSERS
+
     arg = session.current_arg_text.strip().lower()
     if not arg:
-        plugins_list = ['    - ' + p.name.replace(']', '] ').replace('(', ' (')
+        plugins_list = ['    » ' + re.sub(r'\[.*]', '', p.name).replace('(', '  (')
                         for p in plugins
-                        if ('[I]' not in p.name) and ('[H]' not in p.name)]
+                        if ('[I]' not in p.name) and ('[H]' not in p.name) and
+                        ('[A]' not in p.name or is_admin)]
 
         msg = f'DeltaBot version {__version__}\n'\
                + '\n插件列表:\n'\
@@ -29,11 +32,7 @@ async def usage(session: CommandSession):
 
         await session.send(msg +\
                            "\n\n发送 '/help [插件名称]' 获取该插件的详细使用帮助\n\n"
-                           "  - Example:\n"
-                           "获取hitokoto的使用帮助:\n"
-                           "   /help hitokoto\n"
-                           "获取reload的使用帮助:\n"
-                           "   /help reload")
+                           "在网页上查看更多帮助: https://233a344a455.github.io/DeltaBot/usage.html")
         return
 
     plugin_usage = [p.usage for p in plugins if arg == re.sub(r'\[.*]|\(.*\)', '', p.name).strip()]
