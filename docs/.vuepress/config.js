@@ -21,9 +21,7 @@ module.exports = {
     docsDir: 'docs',
     editLinks: true,
 
-    themeConfig: {
-        lastUpdated: 'Last Updated'
-    }
+    lastUpdated: true
   }
 }
   
