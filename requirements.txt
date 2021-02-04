@@ -5,9 +5,9 @@ requests
 lxml
 loguru
 aiocqhttp
+Pillow
 
 ## 'qzone' plugin dependencies (Qzone插件所需依赖库)
 # opencv-python[qzone]
 # selenium[qzone]
-# pillow[qzone]
 # numpy[qzone]
