@@ -32,11 +32,7 @@ async def usage(session: CommandSession):
 
         await session.send(msg +\
                            "\n\n发送 '/help [插件名称]' 获取该插件的详细使用帮助\n\n"
-                           "  - 示例:\n"
-                           "获取hitokoto的使用帮助:\n"
-                           "   /help hitokoto\n"
-                           "获取reload的使用帮助:\n"
-                           "   /help reload")
+                           "在网页上查看更多帮助: https://233a344a455.github.io/DeltaBot/usage.html")
         return
 
     plugin_usage = [p.usage for p in plugins if arg == re.sub(r'\[.*]|\(.*\)', '', p.name).strip()]
