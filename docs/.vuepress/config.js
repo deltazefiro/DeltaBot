@@ -1,4 +1,6 @@
 module.exports = {
+  title: 'DeltaBot Document',
+  description: 'DeltaBot文档中心',
   base: '/DeltaBot/',
   themeConfig: {
     nav: [
