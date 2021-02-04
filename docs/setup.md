@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 # Setup
 
-## 主要功能
+## 基础安装
 
 1. 安装Python3.7+
    :::warning
@@ -54,12 +54,23 @@ sidebarDepth: 2
 
 6.Enjoy!
 
-## Qzone模块(匿名墙功能)安装
-   :::warning
-   实验性功能，已知Bug: 在出现验证码时一定概率登录空间失败
-   :::
 
-   1. 安装 `requirements.txt` 中注释掉的Qzone相关依赖库
-   2. 安装 Chrome 浏览器
-   3. 下载与浏览器版本对应的 [ChromeDriver](https://chromedriver.chromium.org/)
-   4. 填写 `deltabot/config.py` 中的Qzone选填项
+以下为可选模块:  
+## qzone模块(匿名墙功能)安装
+:::warning
+实验性功能，已知Bug: 在出现验证码时一定概率登录空间失败
+:::
+
+1. 安装 `requirements.txt` 中注释掉的Qzone相关依赖库
+2. 安装 Chrome 浏览器
+3. 下载与浏览器版本对应的 [ChromeDriver](https://chromedriver.chromium.org/)
+4. 填写 `deltabot/config.py` 中的Qzone选填项
+
+## gomoku模块(五子棋)安装
+为了保证运行效率，搜索算法核心代码使用C++编写  
+仓库内目前仅封装了`linux-amd64`平台的可执行文件  
+其它平台需要自行编译，**需要gcc环境**
+``` bash
+# 编译命令，在项目根目录下运行
+g++ -O3 -fPIC -shared -o deltabot/plugins/gomoku/search.so deltabot/plugins/gomoku/search.cpp
+```
