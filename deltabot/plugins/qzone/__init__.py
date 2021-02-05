@@ -4,16 +4,16 @@ from .check_content import *
 import os
 
 # Check dependencies
-__enable__ = True
+__enabled__ = True
 try:
     from .qzone_api import *
 except ImportError:
-    logger.warning("Qzone simulate-login dependencies not satisfied. Disabled 'qzone' plugin.")
-    __enable__ = False
+    logger.warning("Qzone simulate-login dependencies not satisfied. Disabled 'qzone' plugin. See https://233a344a455.github.io/DeltaBot/setup.html#qzone%E6%A8%A1%E5%9D%97-%E5%8C%BF%E5%90%8D%E5%A2%99%E5%8A%9F%E8%83%BD-%E5%AE%89%E8%A3%85")
+    __enabled__ = False
 
 if not os.path.exists(get_bot().config.CHROME_DRIVER_PATH):
-    logger.warning("Chrome Driver not found! Disabled 'qzone' plugin.")
-    __enable__ = False
+    logger.warning("Chrome Driver not found! Disabled 'qzone' plugin. See https://233a344a455.github.io/DeltaBot/setup.html#qzone%E6%A8%A1%E5%9D%97-%E5%8C%BF%E5%90%8D%E5%A2%99%E5%8A%9F%E8%83%BD-%E5%AE%89%E8%A3%85")
+    __enabled__ = False
 
 
 __plugin_name__ = 'qzone(空间匿名墙)'
@@ -34,8 +34,8 @@ Command(s):
 @on_command('announce', aliases=('qzone_announce', 'notice'), permission=permission.SUPERUSER)
 async def announce(session: CommandSession):
 
-    if not __enable__:
-        logger.warning("Dependencies are not satisfied. Plugin is disabled.")
+    if not __enabled__:
+        logger.warning("Dependencies are not satisfied. Plugin is disabled. See https://233a344a455.github.io/DeltaBot/setup.html#qzone%E6%A8%A1%E5%9D%97-%E5%8C%BF%E5%90%8D%E5%A2%99%E5%8A%9F%E8%83%BD-%E5%AE%89%E8%A3%85")
         await session.send("插件未启用！")
         return
 
@@ -61,7 +61,7 @@ async def _(session: CommandSession):
 @on_command('anonymous', aliases=('anony', 'anonymous_board'))
 async def anonymous_board(session: CommandSession):
 
-    if not __enable__:
+    if not __enabled__:
         logger.warning("Dependencies are not satisfied / ChromeDriver not found. Plugin is disabled.")
         await session.send("插件未启用！")
         return

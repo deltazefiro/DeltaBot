@@ -7,7 +7,7 @@
 
 **本项目为个人学习用项目!!!**
 
-[文档](https://233a344a455.github.io/DeltaBot/) | [功能](https://233a344a455.github.io/DeltaBot/features.html) | [使用帮助](https://233a344a455.github.io/DeltaBot/usage.html) | [部署指南](https://233a344a455.github.io/DeltaBot/setup.html)
+[查看文档](https://233a344a455.github.io/DeltaBot/) | [功能列表](https://233a344a455.github.io/DeltaBot/features.html) | [使用帮助](https://233a344a455.github.io/DeltaBot/usage.html) | [部署指南](https://233a344a455.github.io/DeltaBot/setup.html)
 
 ![Release](https://img.shields.io/github/v/release/233a344a455/DeltaBot?include_prereleases)
 ![Python Version](https://img.shields.io/badge/python-3.7+-ff69b4.svg)
