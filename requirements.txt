@@ -1,4 +1,4 @@
-## Basic dependencies (基础依赖库)
+## Basic dependencies
 nonebot>=1.8.0
 aiohttp
 requests
@@ -7,7 +7,7 @@ loguru
 aiocqhttp
 Pillow
 
-## 'qzone' plugin dependencies (Qzone插件所需依赖库)
+## 'qzone' plugin dependencies
 # opencv-python[qzone]
 # selenium[qzone]
 # numpy[qzone]

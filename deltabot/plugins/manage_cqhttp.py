@@ -40,7 +40,7 @@ def _download_cqhttp():
 
 
 def _configure_cqhttp():
-    with open('cqhttp/config_template.hjson', 'r') as f:
+    with open('cqhttp/config_template.hjson', 'r', encoding='utf-8') as f:
         cq_config = f.read()
 
     cq_config = cq_config.replace('[uin]', str(config.UIN))
