@@ -68,8 +68,8 @@ sidebarDepth: 2
 
 ## gomoku模块(五子棋)安装
 为了保证运行效率，搜索算法核心代码使用C++编写  
-仓库内目前仅封装了`linux-amd64`平台的可执行文件  
-其它平台需要自行编译，**需要gcc环境**
+~~仓库内目前仅封装了`linux-amd64`平台的可执行文件~~  **暂时皆不提供**  
+需要自行编译，**需要gcc环境**
 ``` bash
 # 编译命令，在项目根目录下运行
 g++ -O3 -fPIC -shared -o deltabot/plugins/gomoku/search.so deltabot/plugins/gomoku/search.cpp

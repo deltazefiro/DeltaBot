@@ -6,18 +6,17 @@ import string
 
 from .display import DisplayGomoku
 
-get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
-gomoku = ctypes.CDLL(get_relative_path('search.so'))
 RANDPOOL = string.ascii_letters + string.digits
-
+get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
 
 class GomokuGame(object):
     # TODO: 使用多线程调用搜索，防止阻碍事件循环
     get_c_chessboard = ctypes.c_int * 255
 
-    def __init__(self, game_id):
+    def __init__(self, clib, game_id):
         self.chessboard = [0] * 225
         self.display = DisplayGomoku()
+        self.clib = clib
 
         os.makedirs(get_relative_path(f'data/pic/{game_id}'), exist_ok=True)
         self.game_id = game_id
@@ -29,11 +28,11 @@ class GomokuGame(object):
         return (ctypes.c_int * 255)(*self.chessboard)
 
     def search(self):
-        r = gomoku.cSearch(self.get_C_chessboard())
+        r = self.clib.cSearch(self.get_C_chessboard())
         return r // 15, r % 15
 
     def estimate(self):
-        return gomoku.cEstimate(self.get_C_chessboard())
+        return self.clib.cEstimate(self.get_C_chessboard())
 
     def set_chess(self, x, y, player: int):
         if not self.chessboard[x * 15 + y]:
