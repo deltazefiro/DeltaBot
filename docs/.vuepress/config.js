@@ -5,9 +5,9 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      { text: '功能', link: '/features' },
+      { text: '功能列表', link: '/features' },
       { text: '使用方法', link: '/usage' },
-      { text: '部署', link: '/setup' }
+      { text: '部署指南', link: '/setup' }
     ],
 
     sidebar: [
