@@ -1,6 +1,9 @@
 module.exports = {
   title: 'DeltaBot Document',
   description: 'DeltaBot文档中心',
+  head: [
+    ['link', { rel: 'icon', href: '/icon.png' }]
+  ],
   base: '/DeltaBot/',
   themeConfig: {
     nav: [
