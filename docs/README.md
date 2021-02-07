@@ -1,9 +1,9 @@
 ---
 home: true
-heroImage: https://raw.githubusercontent.com/deltazefiro/ImageHost/master/deltabot.jpg
-heroText: null
-tagline: 一个基于 NoneBot 的没啥用的QQ机器人
-actionText: 开始 →
+heroImage: https://cdn.jsdelivr.net/gh/deltazefiro/ImageHost/deltabot-icon.png
+heroText: DeltaBot
+tagline: 一个基于 NoneBot 的娱乐型QQ机器人
+actionText: 功能列表 →
 actionLink: /features/
 features:
 - title: 傻瓜式部署
