@@ -20,7 +20,8 @@ from nonebot.command.argfilter.extractors import extract_text
 @on_command('lmbtfy', aliases=('帮你百度', 'bfy', 'baiduforyou'))
 async def lmbtfy(session: CommandSession):
     keyword = session.get('keyword', prompt="请输入关键词", arg_filters=[handle_cancellation(session),extract_text])
-    await session.send('http://tool.mkblog.cn/lmbtfy/?q=' + str(base64.b64encode(keyword.encode('utf-8')))[2:-1])
+    await session.send("你的问题很简单，让我告诉你:\n"
+                       'http://tool.mkblog.cn/lmbtfy/?q=' + str(base64.b64encode(keyword.encode('utf-8')))[2:-1])
 
 @lmbtfy.args_parser
 async def _(session: CommandSession):
