@@ -27,6 +27,9 @@ sidebarDepth: 2
 
 当`[插件名称]`为空时，输出插件列表
 ![](https://cdn.jsdelivr.net/gh/sandboxdream/figurebed/20210203134256.png)
+:::tip NOTE  
+普通用户获取的插件列表中会自动隐藏管理员命令
+:::
 
 如果需要有关插件的详细帮助，请使用空格分开help和插件名如 `help gomoku`
 
@@ -117,9 +120,18 @@ sidebarDepth: 2
   生成陷阱音乐卡片
   
 - `getip [key]`
-获取用户ip  
-请确保陷阱网址**已被访问**
+  获取用户ip  
+  请确保陷阱网址**已被访问**
 
+
+
+### getlog(输出log)
+输出log文件的最后10行
+
+#### 命令:
+- `getlog` 输出log
+
+#### 示例:
 
 
 ### gomoku(五子棋)

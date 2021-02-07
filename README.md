@@ -1,5 +1,7 @@
-![DeltaBot](https://raw.githubusercontent.com/233a344a455/ImageHost/master/deltabot.jpg)
 <div align="center">
+<img width="400" src="https://cdn.jsdelivr.net/gh/233a344a455/ImageHost/deltabot-icon.png" alt="logo">
+
+# DeltaBot
 
 **DeltaBot** 是一个基于 [NoneBot](https://github.com/nonebot/nonebot) 和 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的QQ机器人
 
