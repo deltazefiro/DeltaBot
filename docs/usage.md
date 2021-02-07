@@ -69,7 +69,7 @@ sidebarDepth: 2
 #### 示例:  
 
 ### calladmin(致电管理员)
-用于给管理员(superuesr)发送消息  
+用于给管理员(Superuser)发送消息  
 发送的消息包括消息内容、消息发送者、发送时间  
 
 #### 命令:
