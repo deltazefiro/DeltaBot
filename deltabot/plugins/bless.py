@@ -2,20 +2,20 @@
 from nonebot import on_command, CommandSession, permission
 import random
 
-__plugin_name__ = '[A]bless(2021春节特供)'
+__plugin_name__ = 'bless(2021春节特供)'
 __plugin_usage__ = r"""
-给您拜个晚年！祝您晚年幸福！
-【需要管理员权限】
+给您拜个晚年！祝您晚年幸福！[Doge]
 【过度使用可(bi)能(ran)触发风控】
 
 Command(s):
  - /bless
-    来电祝福吧
+    来句祝福吧~
     
  - /firework
-    真·炸群工具
+    真·炸群工具【需要管理员权限】
 """.strip()
 
+# 素材来源于网络
 b = """
 电势 磁势 引力势 事事得势
 重力 弹力 摩擦力 处处给力
