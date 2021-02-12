@@ -1,3 +1,4 @@
+import aiocqhttp
 from nonebot import on_command
 from nonebot.command.argfilter.controllers import handle_cancellation
 from nonebot.command.argfilter.validators import between_inclusive, ensure_true
@@ -38,13 +39,19 @@ async def reimu(session: CommandSession):
         msg = "找到 %d 结果: \n" %len(search_result)
         for i, r in enumerate(search_result):
             msg += "    【%s】%s\n\n" %(i+1, r[0])
-        await session.send(msg)
+
+        msg_ret = await session.send(msg)
 
         idx = int(await session.aget('idx', prompt='请输入希望查看的结果序号',
                                      arg_filters=[handle_cancellation(session),
                                                   ensure_true(str.isdigit, message="无效的序号，请重新输入！(输入'取消'可终止)"),
                                                   int,
                                                   between_inclusive(start=1, end=len(search_result), message="序号范围错误！请重新输入~(输入'取消'可终止)")]))
+
+        try:
+            await session.bot.delete_msg(message_id=msg_ret['message_id'])
+        except (aiocqhttp.exceptions.ActionFailed, TypeError, KeyError):
+            logger.warning(f"Failed to rewind msg.")
 
         downlinks = await get_download_links(session, search_result[idx-1][1])
         if downlinks:

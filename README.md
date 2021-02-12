@@ -1,5 +1,5 @@
 <div align="center">
-<img width="400" src="https://cdn.jsdelivr.net/gh/233a344a455/ImageHost/deltabot-icon.png" alt="logo">
+<img width="350" src="https://cdn.jsdelivr.net/gh/233a344a455/ImageHost/deltabot-icon.png" alt="logo">
 
 # DeltaBot
 
