@@ -3,6 +3,9 @@ sidebarDepth: 2
 ---
 # Usage
 
+:::tip NOTE  
+本页面`示例`部分尚待补充
+:::
 
 ## 基本
 ### 私聊使用
@@ -55,6 +58,21 @@ sidebarDepth: 2
 ![](https://cdn.jsdelivr.net/gh/sandboxdream/figurebed/20210203134411.png)
 
 
+
+### bless(拜年)<Badge type="warning" text="味儿很冲"/><Badge type="warning" text="2021春节特供"/>
+来点味儿冲的拜年吧！  
+
+*素材来源与网络*
+
+#### 命令:
+
+- `bless` 来句拜年金句  
+- `firework` 刷屏<Badge type="warning" text="仅管理员"/>
+
+#### 示例:  
+
+
+
 ### boom(消息轰炸) <Badge type="warning" text="仅管理员"/>
 直接进行刷屏，请小心群管、群主。 
 ::: danger
@@ -69,7 +87,7 @@ sidebarDepth: 2
 #### 示例:  
 
 ### calladmin(致电管理员)
-用于给管理员(superuesr)发送消息  
+用于给管理员(Superuser)发送消息  
 发送的消息包括消息内容、消息发送者、发送时间  
 
 #### 命令:
