@@ -71,7 +71,7 @@ PHP全Fatal Error，fileinfo全装不上，npm/composer install全报错，Larav
 symbol = list('✿❀❁❂❃❇❈❉✾💮🌸🏵★☆⁂⁎⁑🍎🍊🍓💊🎄🌹🎉💝🎀🎈🐚🏆💰⚡🔑🐎🚀👍👌💪👊')
 
 
-@on_command('bless', aliases=('拜年', '新年快乐'), permission=permission.SUPERUSER)
+@on_command('bless', aliases=('拜年', '新年快乐'))
 async def bless(session: CommandSession):
     msg = list(random.choice(b))
     for i in range(int(len(msg)/5)):
