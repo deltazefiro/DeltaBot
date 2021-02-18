@@ -94,7 +94,9 @@ EXPLOSION is ART!!!
 
 ## TODO
 
-见 Project
+见 Project  
+如果您有好的建议/希望加入的功能，欢迎提issues~  
+*由于寒假的结束，本项目可能更新相对缓慢*
 
 ## Demo
 
@@ -116,7 +118,7 @@ EXPLOSION is ART!!!
 - 部分代码修改自 [Angel-Hair/XUN_Bot](https://github.com/Angel-Hair/XUN_Bot)
 - Qzone模拟登录修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)
 - 网易云 [@littlealone100](https://music.163.com/#/artist?id=12063182) 所创作的充满吸引力的作品「 [逍遥游](https://music.163.com/#/song?id=532522915) 」作为音乐陷阱的诱饵
-- ~~[@sandboxdream](https://github.com/sandboxdream) 为本项目readme做出的 [至关重要的贡献](https://github.com/233a344a455/DeltaBot/commit/91dc0601fb0c5ed48caaa6f6cc99a77280d3e52a)~~
+- ~~[@sandboxdream](https://github.com/sandboxdream) 为本项目文档做出的 [至关重要的贡献](https://github.com/233a344a455/DeltaBot/commit/91dc0601fb0c5ed48caaa6f6cc99a77280d3e52a)~~
 
 
 

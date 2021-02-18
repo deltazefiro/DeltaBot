@@ -34,6 +34,6 @@ logger.add(sys.stdout,
            format="<g>{time:YYYY-MM-DD HH:mm:ss}</g> <level>| {level} |</level> <c>{name}</c>:<c>{function}</c> - <level>{message}</level>")
 
 logger.add('logfile.log', rotation='10 MB',
-           # filter='deltabot',
+           filter='deltabot',
            level='INFO',
            format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {name}:{function} - {message}")
