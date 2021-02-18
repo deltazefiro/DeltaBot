@@ -31,8 +31,7 @@ async def usage(session: CommandSession):
                + '\n'.join(plugins_list)
 
         await session.send(msg +\
-                           "\n\n【注意: 以上为插件列表，并非命令列表】\n"
-                           "发送「/help+空格+插件名称」获取该插件所支持的命令列表\n\n"
+                           "\n\n【注意: 以上为插件列表，并非命令列表，请发送「/help+空格+插件名称」获取该插件所支持的命令列表】\n\n"
                            "若在群聊中使用请先@本机器人再输入命令\n\n"
                            "在网页上查看更多帮助: https://233a344a455.github.io/DeltaBot/usage.html")
         return
