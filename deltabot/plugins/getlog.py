@@ -3,7 +3,7 @@ import os
 
 __plugin_name__ = '[A]getlog(输出log)'
 __plugin_usage__ = r"""
-输出log文件的最后10行
+输出log文件的最后20行
 【需要管理员权限】
 
 Command(s):
@@ -21,8 +21,8 @@ async def get_log(session: CommandSession):
         await session.send("未找到log文件")
 
     try:
-        content = content[-10:]
+        content = content[-20:]
     except IndexError:
         pass
 
-    await session.send('\n'.join(content).replace('deltabot.plugins.', ''))
+    await session.send(''.join(content).replace('deltabot.plugins.', ''))
