@@ -15,7 +15,7 @@ Command(s):
 """.strip()
 
 
-@on_command('calladmin', aliases=('test', '致电管理员'))
+@on_command('calladmin', aliases=('call_admin', '致电管理员'))
 async def call_admin(session: CommandSession):
 
     user_id = session.event['user_id']
