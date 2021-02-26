@@ -25,4 +25,4 @@ async def get_log(session: CommandSession):
     except IndexError:
         pass
 
-    await session.send('　　'.join(content).replace('deltabot.plugins.', ''))
+    await session.send(' » ' + ' » '.join(content).replace('deltabot.plugins.', ''))
