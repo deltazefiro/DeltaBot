@@ -52,7 +52,7 @@ async def _(session: NLPSession):
 
 @on_command('unknown_command')
 async def unknown_command(session: CommandSession):
-    await session.send("未知命令，请输入/help查看帮助")
+    await session.send("未知命令，请输入/help查看帮助!")
 
 
 @on_natural_language(keywords='/')
