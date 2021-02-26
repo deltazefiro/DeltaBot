@@ -54,7 +54,7 @@ def _configure_cqhttp():
 def _get_cqhttp_file_name(match_version=True):
     if match_version:
         for file_name in os.listdir('cqhttp/'):
-            if f'go-cqhttp-{cqhttp_version}' in file_name and file_name[0] != '_':
+            if f'go-cqhttp-{cqhttp_version}' in file_name and file_name[-3:] != '.dl':
                 return file_name
     else:
         for file_name in os.listdir('cqhttp/'):
