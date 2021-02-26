@@ -32,7 +32,7 @@ def get_cardimage_segment(file: str, maxheight: int = 500, maxwidth: int = 500, 
 
 def download_file(url: str, download_path: str):
     import requests, sys, os
-    with open(download_path + '.downloading', 'wb') as f:
+    with open(download_path + '.dl', 'wb') as f:
         response = requests.get(url, stream=True)
         total = int(response.headers.get('content-length'))
 
@@ -48,7 +48,7 @@ def download_file(url: str, download_path: str):
             sys.stdout.flush()
 
     sys.stdout.write('\n')
-    os.rename(download_path + '.downloading', download_path)
+    os.rename(download_path + '.dl', download_path)
 
 
 async def simple_post(session, url: str, data: dict, timeout: int = 10) -> Optional[dict]:
