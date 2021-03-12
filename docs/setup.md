@@ -14,7 +14,11 @@ sidebarDepth: 2
 
    ```bash
    git clone --depth=1 https://github.com/233a344a455/DeltaBot.git
-   ```
+   ```  
+   
+   :::tip NOTE
+   由于本项目仍在快速迭代中，不建议使用 Release 版本  
+   :::
 
 3. 安装依赖库
 
@@ -68,8 +72,9 @@ sidebarDepth: 2
 
 ## gomoku模块(五子棋)安装
 为了保证运行效率，搜索算法核心代码使用C++编写  
-~~仓库内目前仅封装了`linux-amd64`平台的可执行文件~~  **暂时皆不提供**  
-需要自行编译，**需要gcc环境**
+目前提供了`linux-amd64`平台的可执行文件，请从 [此处](https://github.com/233a344a455/DeltaBot/releases/download/v0.1.8/search.so) 下载并将其放置到 `deltabot/plugins/gomoku/` 目录下  
+
+其它平台需要自行编译，**需要gcc环境**
 ``` bash
 # 编译命令，在项目根目录下运行
 g++ -O3 -fPIC -shared -o deltabot/plugins/gomoku/search.so deltabot/plugins/gomoku/search.cpp
