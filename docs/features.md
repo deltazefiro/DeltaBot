@@ -19,11 +19,11 @@ DeltaBot 有以下特点:
   所有网络IO均使用异步处理，防止发生阻塞，保证高并发性
 
 ## Demo
-![demo](https://img.shields.io/badge/demoQQ-2240701293-yellow.svg)  
-一切介绍不如亲自尝试  
+~~一切介绍不如亲自尝试  
 本项目提供一个演示用机器人「人工智障」: QQ 2240701293  
-由 [@sandboxdream](https://github.com/sandboxdream) 维护 ~~要是挂了去打他~~  
-自动通过好友请求，请注意不要在匿名墙内发布不合规内容
+由 [@sandboxdream](https://github.com/sandboxdream) 维护
+自动通过好友请求，请注意不要在匿名墙内发布不合规内容~~  
+暂不提供示例机器人
 
 
 ## 功能
@@ -44,6 +44,10 @@ DeltaBot 有以下特点:
 目前仅支持纯文本格式
 
 其中模拟登录部分修改至 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider/blob/master/qzone_spider.py)
+
+### 关键词触发  
+可设置群中关键词，自动回复指定内容  
+***[v1.9+]** 实验性功能，尚不稳定*
 
 ### 使用陷阱卡片获取他人ip&大致位置
 生成一个音乐卡片陷阱  
