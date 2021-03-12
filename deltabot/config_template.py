@@ -93,3 +93,6 @@ CHECK_ILLEGAL_INFO = False
 # 可以在 https://ai.baidu.com/censoring#/strategylist 配置审核策略
 BAIDU_API_KEY = ''
 BAIDU_SECRET_KEY = ''
+
+# =========== Internal Config ===========
+# 内部配置，请勿更改

@@ -40,6 +40,10 @@
 
 其中模拟登录部分修改至 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider/blob/master/qzone_spider.py)
 
+### 关键词触发  
+可设置群中关键词，自动回复指定内容  
+***[v1.8+]** 实验性功能，尚不稳定*
+
 ### 使用陷阱卡片获取他人ip&大致位置
 生成一个音乐卡片陷阱  
 对方访问卡片后即可获得其ip&大致位置  
@@ -100,9 +104,10 @@ EXPLOSION is ART!!!
 
 ## Demo
 
-本项目提供一个演示用机器人「人工智障」: QQ 2240701293  
-由 [@sandboxdream](https://github.com/sandboxdream) 维护 ~~要是挂了去打他~~  
-自动通过好友请求，请注意不要在匿名墙内发布不合规内容
+~~本项目提供一个演示用机器人「人工智障」: QQ 2240701293  
+由 [@sandboxdream](https://github.com/sandboxdream) 维护
+自动通过好友请求，请注意不要在匿名墙内发布不合规内容~~  
+暂时不提供演示机器人
 
 
 ## Setup
