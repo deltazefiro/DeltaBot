@@ -104,10 +104,10 @@ EXPLOSION is ART!!!
 
 ## Demo
 
-~~本项目提供一个演示用机器人「人工智障」: QQ 2240701293  
-由 [@sandboxdream](https://github.com/sandboxdream) 维护
-自动通过好友请求，请注意不要在匿名墙内发布不合规内容~~  
-暂时不提供演示机器人
+本项目提供一个演示用机器人「人工智障」: QQ 2240701293  
+由 [@sandboxdream](https://github.com/sandboxdream) 维护  
+自动通过好友请求，请注意不要在匿名墙内发布不合规内容  
+~~暂时不提供演示机器人~~ **已恢复**
 
 
 ## Setup
