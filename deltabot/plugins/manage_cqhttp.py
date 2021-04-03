@@ -20,81 +20,83 @@ Please DO NOT call the plugin *manually*.
 cqhttp_version = _version.__cqhttp_version__
 pf = sys.platform
 
+bpath = os.path.join(os.path.dirname(__file__), '../../cqhttp/')
 
 def _download_cqhttp():
     if pf == 'linux':
         url = f"https://github.com/Mrs4s/go-cqhttp/releases/download/{cqhttp_version}/go-cqhttp-{cqhttp_version}-linux-amd64"
         logger.info(f"Start downloading go-cqhttp from {url} ...")
-        download_file(url, f'cqhttp/go-cqhttp-{cqhttp_version}-linux-amd64')
+        download_file(url, bpath + f'go-cqhttp-{cqhttp_version}-linux-amd64')
     elif pf == 'win32':
         url = f"https://github.com/Mrs4s/go-cqhttp/releases/download/{cqhttp_version}/go-cqhttp-{cqhttp_version}-windows-amd64.exe"
         logger.info(f"Start downloading go-cqhttp from {url} ...")
-        download_file(url, f'cqhttp/go-cqhttp-{cqhttp_version}-windows-amd64.exe')
+        download_file(url, bpath + f'go-cqhttp-{cqhttp_version}-windows-amd64.exe')
 
     logger.info("Downloaded go-cqhttp successfully.")
 
-    for file_name in os.listdir('cqhttp/'):
-        if file_name[:11] == 'go-cqhttp-v' and not f'go-cqhttp-{cqhttp_version}-' in file_name:
+    for file_name in os.listdir(bpath):
+        if (file_name[:11] == 'go-cqhttp-v') and not (f'go-cqhttp-{cqhttp_version}-' in file_name):
             os.remove(f'cqhttp/{file_name}')
     logger.info("Removed outdated go-cqhttp.")
 
 
 def _configure_cqhttp():
-    with open('cqhttp/config_template.hjson', 'r', encoding='utf-8') as f:
+    with open(bpath + 'config_template.hjson', 'r', encoding='utf-8') as f:
         cq_config = f.read()
 
     cq_config = cq_config.replace('[uin]', str(config.UIN))
     cq_config = cq_config.replace('[password]', str(config.PASSWORD))
     cq_config = cq_config.replace('[port]', str(config.PORT))
 
-    with open('cqhttp/config.hjson', 'w') as f:
+    with open(bpath + 'config.hjson', 'w') as f:
         f.write(cq_config)
 
 
 def _get_cqhttp_file_name(match_version=True):
     if match_version:
-        for file_name in os.listdir('cqhttp/'):
+        for file_name in os.listdir(bpath):
             if re.fullmatch(f'go-cqhttp-{cqhttp_version}-(linux-amd64|windows-amd64.exe)', file_name)\
                     and file_name[-3:] != '.dl':
                 return file_name
     else:
-        for file_name in os.listdir('cqhttp/'):
+        for file_name in os.listdir(bpath):
             if file_name[:11] == 'go-cqhttp-v':
                 return file_name
     return None
 
 
-def _log_cqhttp(cqhttp_process):
-    with cqhttp_process.stdout:
-        for line in iter(cqhttp_process.stdout.readline, b''):  # b'\n'-separated lines
-            l = line.decode('utf-8').strip()[22:]
-            match = re.search(r'\[.*]:', l)
-            if not match:
-                continue  # 防止多行信息报错
-            r = match.span()
-            level, content = l[r[0] + 1:r[1] - 2], l[r[1] + 1:]
-            if level == 'INFO':
-                logger.info(content)
-            elif level == 'WARNING':
-                logger.warning(content)
-            elif level == 'FAULT':
-                logger.error(content)
-            elif level == 'DEBUG':
-                logger.debug(content)
-            else:
-                logger.error(content)
+# def _log_cqhttp(cqhttp_process):
+#     with cqhttp_process.stdout:
+#         for line in iter(cqhttp_process.stdout.readline, b''):  # b'\n'-separated lines
+#             l = line.decode('utf-8').strip()[22:]
+#             match = re.search(r'\[.*]:', l)
+#             if not match:
+#                 continue  # 防止多行信息报错
+#             r = match.span()
+#             level, content = l[r[0] + 1:r[1] - 2], l[r[1] + 1:]
+#             if level == 'INFO':
+#                 logger.info(content)
+#             elif level == 'WARNING':
+#                 logger.warning(content)
+#             elif level == 'FAULT':
+#                 logger.error(content)
+#             elif level == 'DEBUG':
+#                 logger.debug(content)
+#             else:
+#                 logger.error(content)
 
 
 def _start_cqhttp(cqhttp_file_name):
     # Check is go-cqhttp executable
-    if not os.access(f'cqhttp/{cqhttp_file_name}', os.X_OK):
-        mode = os.stat(f'cqhttp/{cqhttp_file_name}').st_mode | 0o100
+    cqhttp_path = bpath + cqhttp_file_name
+    if not os.access(cqhttp_path, os.X_OK):
+        mode = os.stat(cqhttp_path).st_mode | 0o100
         logger.warning("go-cqhttp is not executable! Sudo authority required to set permissions.")
-        os.chmod(f'cqhttp/{cqhttp_file_name}', mode)
+        os.chmod(cqhttp_path, mode)
         logger.info("Set permissions successful. Sudo authority will not required on next running.")
 
     logger.info("Start go-cqhttp!")
-    subprocess.Popen([f'./{cqhttp_file_name}', 'faststart'], cwd='cqhttp')
+    subprocess.Popen([f'./{cqhttp_file_name}', 'faststart'], cwd=bpath)
 
     # # handle go-cqhttp output with loguru
     # cqhttp_process = subprocess.Popen([f'./{cqhttp_file_name}', 'faststart'], cwd='cqhttp',
