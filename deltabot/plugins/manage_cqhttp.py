@@ -96,7 +96,7 @@ def _start_cqhttp(cqhttp_file_name):
         logger.info("Set permissions successful. Sudo authority will not required on next running.")
 
     logger.info("Start go-cqhttp!")
-    subprocess.Popen([f'./{cqhttp_file_name}', 'faststart'], cwd=bpath)
+    subprocess.Popen([f'{cqhttp_path}', 'faststart'], cwd=bpath)
 
     # # handle go-cqhttp output with loguru
     # cqhttp_process = subprocess.Popen([f'./{cqhttp_file_name}', 'faststart'], cwd='cqhttp',
