@@ -1,3 +1,5 @@
+from typing import Union, Pattern, Collection, Iterable
+
 from nonebot.default_config import *
 
 """
@@ -11,42 +13,49 @@ from nonebot.default_config import *
 # 其它平台请将本分类下所有以'AUTO_'开头的选项为False并手动获取并在'PORT'设置的端口运行go-cqhttp]
 
 # 与cqhttp通讯的端口
-HOST = '0.0.0.0'
-PORT = 8080
+HOST: str = '0.0.0.0'
+PORT: int = 8080
 
 # 自动从go-cqhttp的Github下载其Release (同时控制是否自动更新go-cqhttp)
 # 若下载失败，请关闭此项并手动从 https://github.com/Mrs4s/go-cqhttp/releases 下载对应平台的版本，
 # 并将其重命名为 go-cqhttp (文件扩展名不变)
-AUTO_DOWNLOAD_GO_CQHTTP = True
+AUTO_DOWNLOAD_GO_CQHTTP: bool = True
 
 # 是否自动生成go-cqhttp配置/启动go-cqhttp
-AUTO_CONFIGURE_GO_CQHTTP = True
-AUTO_START_GO_CQHTTP = True
+AUTO_CONFIGURE_GO_CQHTTP: bool = True
+AUTO_START_GO_CQHTTP: bool = True
 
 # 机器人账号&密码[若自动生成go-cqhttp配置则必填]
-UIN = ''
-PASSWORD = ''
+UIN: str = ''
+PASSWORD: str = ''
 
 
 # =========== Basic Config ===========
 
 # 群聊唤醒机器人的关键词
-NICKNAME = {'DeltaBot', 'deltabot', 'Deltabot', 'delta_bot'}
+NICKNAME: Iterable[Union[str, Pattern]] = {'DeltaBot', 'deltabot', 'Deltabot', 'delta_bot', '@DeltaBot'}
 
 # 命令的起始标记
-COMMAND_START = {'', '/', '!', '！'}
+COMMAND_START: Iterable[Union[str, Pattern]] = {'', '/', '!', '！'}
 
 # 当有命令会话正在运行时，给用户新消息的回复
-SESSION_RUNNING_EXPRESSION = "您有命令正在执行，请稍后再试（可以使用'/kill'强制结束）"
+SESSION_RUNNING_EXPRESSION: str = "您有命令正在执行，请稍后再试（可以使用'/kill'强制结束）"
 
 # 是否输出调试信息
-DEBUG = False
+DEBUG: bool = False
+
+# 是否自动通过好友申请
+APPROVE_FRIEND_ADDING: bool = True
+
+# 自动通过加群邀请模式
+# 可选 'everyone'(自动同意所有加群邀请) / 'superuser'(仅通过superuser的加群邀请) / 'disable' (不自动通过任何邀请)
+APPROVE_GROUP_INVITE_MODE: str = 'superuser'
 
 # 通过好友后的欢迎信息
-WELCOME_MESSAGE = "Hello!欢迎使用DeltaBot~\n请使用'/help'查看功能列表"
+WELCOME_MESSAGE: str = "Hi!欢迎使用DeltaBot~\n请使用'/help'查看功能列表"
 
 # 管理员账号
-SUPERUSERS = {}
+SUPERUSERS: Collection[int] = {12345678}
 
 # =========== NLP Process API ===========
 
@@ -59,21 +68,21 @@ EXPR_DONT_UNDERSTAND = (
 
 # 对话API平台选择 ('tencent' / 'itpk' / '')
 # 若为 '' 则不启用对话功能
-NLP_API = 'itpk'
+NLP_API: str = 'itpk'
 
 # [可选]腾讯AI开发平台(https://ai.qq.com/)对话API
-TENCENT_APP_ID = ''
-TENCENT_APP_KEY = ''
+TENCENT_APP_ID: str = ''
+TENCENT_APP_KEY: str = ''
 
 # [可选]茉莉机器人(http://www.itpk.cn/)对话API [不填也可调用]
-ITPK_API_KEY = ''
-ITPK_APT_SECRET = ''
+ITPK_API_KEY: str = ''
+ITPK_APT_SECRET: str = ''
 
 # =========== Hitokoto ===========
 
 # 一言的句子类型，见 https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0
 # 若要启用所有类型，可不填
-HITOKOTO_CATEGORY = {'a', 'i'}
+HITOKOTO_CATEGORY: Iterable[str] = {'a', 'i'}
 
 # =========== Qzone ===========
 # [仅在使用 Qzone 插件时需要填写以下项]
@@ -93,6 +102,7 @@ CHECK_ILLEGAL_INFO = False
 # 可以在 https://ai.baidu.com/censoring#/strategylist 配置审核策略
 BAIDU_API_KEY = ''
 BAIDU_SECRET_KEY = ''
+
 
 # =========== Internal Config ===========
 # 内部配置，请勿更改

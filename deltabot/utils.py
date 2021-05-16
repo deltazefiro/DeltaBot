@@ -2,6 +2,10 @@ from typing import Optional
 
 
 # get_relative_path = lambda p: os.path.join(os.path.dirname(__file__), p)
+import nonebot
+from loguru import logger
+from nonebot.session import BaseSession
+
 
 def get_local_proxy():
     from urllib.request import getproxies
@@ -131,3 +135,18 @@ async def get_baidu_ai_token(session, force: bool = False) -> Optional[str]:
 
     _baidu_ai_token = r['access_token']
     return _baidu_ai_token
+
+
+async def get_stranger_nickname(session: BaseSession, user_id: int) -> Optional[str]:
+    try:
+        ret = await session.bot.call_action(action='get_stranger_info', user_id=user_id)
+        return ret['nickname']
+    except nonebot.exceptions.CQHttpError:
+        return None
+
+async def get_group_name(session: BaseSession, group_id: int) -> Optional[str]:
+    try:
+        ret = await session.bot.call_action(action='get_group_info', group_id=group_id)
+        return ret['group_name']
+    except nonebot.exceptions.CQHttpError:
+        return ''
