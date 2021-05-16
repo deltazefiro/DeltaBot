@@ -53,9 +53,9 @@ async def approve_group_inviting(session: RequestSession):
             pass
 
         logger.info(f"Approved group invite request: {group_name}<{group_name}>, from {user_nickname}<{user_id}>")
-        await helpers.send_to_superusers(bot, f"自动通过来自 {user_nickname}<{user_id}> 的加群 {group_id}<{group_name}> 邀请")
+        await helpers.send_to_superusers(bot, f"自动通过来自 {user_nickname}<{user_id}> 的加群 {group_name}<{group_id}> 邀请")
         return
 
     logger.info(f"Received group invite request: {group_name}<{group_name}>, from {user_nickname}<{user_id}>")
-    await helpers.send_to_superusers(bot, f"收到来自 {user_nickname}<{user_id}> 的加群 {group_id}<{group_name}> 邀请")
+    await helpers.send_to_superusers(bot, f"收到来自 {user_nickname}<{user_id}> 的加群 {group_name}<{group_id}> 邀请")
     return
