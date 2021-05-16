@@ -34,7 +34,7 @@ async def usage(session: CommandSession):
                            "\n\n⚠️注意：以上为插件列表，并非命令列表！"
                            "请发送【/help+空格+插件名称】获取该插件所支持的命令列表，例如: /help couplet\n\n"
                            "若在群聊中使用请先@本机器人再输入命令\n\n"
-                           "在网页上查看更多帮助: https://delta_zero.gitee.io/DeltaBot/usage.html")
+                           f"在网页上查看更多帮助: https://delta_zero.gitee.io/DeltaBot/{__version__ if 'dev' not in __version__ else 'next'}/usage.html")
         return
 
     plugin_usage = [p.usage for p in plugins if arg == re.sub(r'\[.*]|\(.*\)', '', p.name).strip()]

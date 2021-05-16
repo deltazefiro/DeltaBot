@@ -17,8 +17,9 @@ Please DO NOT call the plugin *manually*.
 
 @on_command('NLP')
 async def NLP(session: CommandSession):
-    # 获取可选参数，这里如果没有 message 参数，命令不会被中断，message 变量会是 None
     message = session.state.get('message')
+    if not message:
+        return
 
     api = get_bot().config.NLP_API
     if api == 'tencent':

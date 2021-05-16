@@ -34,6 +34,10 @@ def get_req_sign(params: dict, app_key) -> str:
 
 
 async def call_NLP_api(session: CommandSession, text: str) -> Optional[str]:
+
+    if not text:
+        return None
+
     config = nonebot.get_bot().config
     url = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat"
 
