@@ -148,3 +148,6 @@ config.ini
 
 # ChromeDriver
 chromedriver
+
+# Docs
+/node_modules/
