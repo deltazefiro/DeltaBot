@@ -17,10 +17,10 @@ module.exports = context => ({
         ],
 
         sidebar: [
-            '/',
-            '/features',
-            '/usage',
-            '/setup'
+            '',
+            'features',
+            'usage',
+            'setup'
         ],
 
         repo: 'deltazefiro/DeltaBot',
