@@ -14,7 +14,6 @@
 ![Release](https://img.shields.io/github/v/release/233a344a455/DeltaBot?include_prereleases)
 ![Python Version](https://img.shields.io/badge/python-3.7+-ff69b4.svg)
 ![NoneBot Version](https://img.shields.io/badge/nonebot-1.8.0+-red.svg)
-![Demo](https://img.shields.io/badge/demoQQ-2240701293-green.svg)
 [![Document](https://img.shields.io/badge/Document-%E7%82%B9%E5%87%BB%E6%9F%A5%E7%9C%8B-orange)](https://233a344a455.github.io/DeltaBot/)
 
 </div>
@@ -104,10 +103,7 @@ EXPLOSION is ART!!!
 
 ## Demo
 
-本项目提供一个演示用机器人「人工智障」: QQ 2240701293  
-由 [@sandboxdream](https://github.com/sandboxdream) 维护  
-自动通过好友请求，请注意不要在匿名墙内发布不合规内容  
-~~暂时不提供演示机器人~~ **已恢复**
+由于tx反复以业务违规为由封禁演示用机器人账号，故暂不提供演示用机器人。
 
 
 ## Setup
@@ -124,7 +120,6 @@ EXPLOSION is ART!!!
 - Qzone模拟登录修改自 [luolongfei/qzone-spider](https://github.com/luolongfei/qzone-spider)
 - 网易云 [@littlealone100](https://music.163.com/#/artist?id=12063182) 所创作的充满吸引力的作品「 [逍遥游](https://music.163.com/#/song?id=532522915) 」作为音乐陷阱的诱饵
 - [Jetbrains 提供的好用的IDE](https://jb.gg/OpenSource)
-- ~~[@sandboxdream](https://github.com/sandboxdream) 为本项目文档做出的 [至关重要的贡献](https://github.com/233a344a455/DeltaBot/commit/91dc0601fb0c5ed48caaa6f6cc99a77280d3e52a)~~
 
 
 
