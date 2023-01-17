@@ -18,6 +18,11 @@
 
 </div>
 
+> 由于开发者时间等原因，我们决定停止维护本项目。  
+> 目前 DeltaBot 的前置依赖 Nonebot1 已几乎停止功能开发，其继承者为 Nonebot2。DeltaBot 虽未能根据计划迁移至 Nonebot2，但未来可能将会把部分特色功能，以插件的形式迁移到Nonebot2。如 qzone 匿名墙功能。感谢各位对本项目的支持。 
+>  
+> —— @deltazefiro, 2023.01.17
+
 ## Features
 
 [![Document](https://img.shields.io/badge/在文档中查看-点击进入-orange)](https://deltazefiro.github.io/DeltaBot/features.html)
