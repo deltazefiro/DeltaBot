@@ -1,5 +1,5 @@
 <div align="center">
-<img width="350" src="https://cdn.jsdelivr.net/gh/233a344a455/ImageHost/deltabot-icon.png" alt="logo">
+<img width="350" src="https://cdn.jsdelivr.net/gh/deltazefiro/ImageHost/deltabot-icon.png" alt="logo">
 
 # DeltaBot
 
@@ -9,18 +9,23 @@
 
 **本项目为个人学习用项目!!!**
 
-[查看文档](https://233a344a455.github.io/DeltaBot/) | [功能列表](https://233a344a455.github.io/DeltaBot/features.html) | [使用帮助](https://233a344a455.github.io/DeltaBot/usage.html) | [部署指南](https://233a344a455.github.io/DeltaBot/setup.html)
+[查看文档](https://deltazefiro.github.io/DeltaBot/) | [功能列表](https://deltazefiro.github.io/DeltaBot/features.html) | [使用帮助](https://deltazefiro.github.io/DeltaBot/usage.html) | [部署指南](https://deltazefiro.github.io/DeltaBot/setup.html)
 
-![Release](https://img.shields.io/github/v/release/233a344a455/DeltaBot?include_prereleases)
+![Release](https://img.shields.io/github/v/release/deltazefiro/DeltaBot?include_prereleases)
 ![Python Version](https://img.shields.io/badge/python-3.7+-ff69b4.svg)
 ![NoneBot Version](https://img.shields.io/badge/nonebot-1.8.0+-red.svg)
-[![Document](https://img.shields.io/badge/Document-%E7%82%B9%E5%87%BB%E6%9F%A5%E7%9C%8B-orange)](https://233a344a455.github.io/DeltaBot/)
+[![Document](https://img.shields.io/badge/Document-%E7%82%B9%E5%87%BB%E6%9F%A5%E7%9C%8B-orange)](https://deltazefiro.github.io/DeltaBot/)
 
 </div>
 
+> 由于开发者时间等原因，我们决定停止维护本项目。  
+> 目前 DeltaBot 的前置依赖 Nonebot1 已几乎停止功能开发，其继承者为 Nonebot2。DeltaBot 虽未能根据计划迁移至 Nonebot2，但未来可能将会把部分特色功能，以插件的形式迁移到Nonebot2。如 qzone 匿名墙功能。感谢各位对本项目的支持。 
+>  
+> —— @deltazefiro, 2023.01.17
+
 ## Features
 
-[![Document](https://img.shields.io/badge/在文档中查看-点击进入-orange)](https://233a344a455.github.io/DeltaBot/features.html)
+[![Document](https://img.shields.io/badge/在文档中查看-点击进入-orange)](https://deltazefiro.github.io/DeltaBot/features.html)
 
 ### 自动配置go-cqhttp
 在机器人启动时自动配置并运行QQ协议端 [Go-cqhttp](https://github.com/Mrs4s/go-cqhttp/)  
@@ -108,7 +113,7 @@ EXPLOSION is ART!!!
 
 ## Setup
 
-[![Document](https://img.shields.io/badge/在文档中查看-点击进入-orange)](https://233a344a455.github.io/DeltaBot/setup.html)
+[![Document](https://img.shields.io/badge/在文档中查看-点击进入-orange)](https://deltazefiro.github.io/DeltaBot/setup.html)
 
 ## Thanks
 
